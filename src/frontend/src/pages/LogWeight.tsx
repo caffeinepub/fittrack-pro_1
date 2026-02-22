@@ -87,7 +87,7 @@ export default function LogWeight() {
                 <SelectTrigger id="exercise">
                   <SelectValue placeholder="Select an exercise" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="max-h-[300px]">
                   {exercises?.map((exercise, index) => (
                     <SelectItem key={index} value={index.toString()}>
                       <div className="flex items-center gap-2">

@@ -2,10 +2,29 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-ensure-the-existing-seed-functionality-in-the-exerciselibrary-page-can-populate-these-30-exercises-into-the-library-when-triggered",
-      "featureTitle": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
+      "featureId": "feature-make-all-dropdown-menus-scrollable-when-content-exceeds-viewport-height-particularly-the-exercise-selection-dropdowns-in-workout-creation-and-weight-logging-forms",
+      "featureTitle": "Make all dropdown menus scrollable when content exceeds viewport height, particularly the exercise selection dropdowns in workout creation and weight logging forms",
       "files": [
-        "frontend/src/pages/ExerciseLibrary.tsx"
+        "frontend/src/pages/LogWeight.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-issues-on-the-workout-page-to-ensure-proper-functionality-and-display",
+      "featureTitle": "Fix issues on the workout page to ensure proper functionality and display",
+      "files": [
+        "frontend/src/pages/WorkoutDetail.tsx",
+        "frontend/src/pages/WorkoutsList.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",

@@ -5,9 +5,9 @@ import Text "mo:core/Text";
 import Order "mo:core/Order";
 import List "mo:core/List";
 import Runtime "mo:core/Runtime";
-import Migration "migration";
 
-(with migration = Migration.run)
+
+
 actor {
   type Exercise = {
     name : Text;

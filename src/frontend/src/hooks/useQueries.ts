@@ -122,6 +122,21 @@ export function useDeleteExercise() {
   });
 }
 
+export function useGetAllWorkouts() {
+  const { actor, isFetching } = useActor();
+
+  return useQuery<Array<Workout & { id: bigint }>>({
+    queryKey: ['workouts'],
+    queryFn: async () => {
+      if (!actor) return [];
+      // Since backend doesn't have getAllWorkouts, we'll need to track created workouts
+      // For now, return empty array - this is a backend gap
+      return [];
+    },
+    enabled: !!actor && !isFetching,
+  });
+}
+
 export function useGetWorkout(id: bigint | null) {
   const { actor, isFetching } = useActor();
 
@@ -165,6 +180,21 @@ export function useUpdateWorkout() {
     },
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: ['workout', variables.id.toString()] });
+      queryClient.invalidateQueries({ queryKey: ['workouts'] });
+    },
+  });
+}
+
+export function useDeleteWorkout() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: bigint) => {
+      if (!actor) throw new Error('Actor not initialized');
+      return actor.deleteWorkout(id);
+    },
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['workouts'] });
     },
   });

@@ -1,51 +1,55 @@
 {
   "kind": "build_request",
-  "title": "Pre-populate exercise library with 30 exercises",
+  "title": "Enable dropdown scrolling and fix workout page",
+  "projectName": "FitTrack Pro",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add 30 pre-defined exercises to the backend exercise library with the following data: Alternating Single-Leg Squat (Free Weight, lower body), Machine Single-Leg Extensions (Machine, lower body), Single-Leg Hamstring Curls (Machine, lower body), Hip Adduction (Machine, lower body), Dumbbell Incline Bench Press (Dumbbell, chest), Machine Chest Press (Machine, chest), Machine Fly / Machine Chest Fly (Machine, chest), Dumbbell Chest Press (Dumbbell, chest), Machine Supported Row (Machine, back), Machine Lat Pulldown (Machine, back), Cable Row / Cable Back Rows (Cable, back), Closed-Grip Cable Lat Pulldowns (Cable, back), Machine Rear Delt Fly (Machine, shoulders), Machine Shoulder Raises (Machine, shoulders), Dumbbell Shoulder Press (Dumbbell, shoulders), Dumbbell Shoulder Raises (Dumbbell, shoulders), Cable Shoulder Face Pulls (Cable, shoulders), Preacher Bench Bicep Curls (Free Weight, biceps), Preacher Bench Hammer Curls (Free Weight, biceps), Dumbbell Incline Bicep Curls (Dumbbell, biceps), Dumbbell Hammer Curls (Dumbbell, biceps), Dumbbell Preacher Bench Hammer Curls (Dumbbell, biceps), Tricep Overhead Extension (Cable, triceps), Cable Tricep Overhead Extension (Cable, triceps), Tricep Pulldown (Cable, triceps), Reverse Grip Tricep Pulldown (Cable, triceps), Cable Tricep Pulldowns (Cable, triceps), Cable Pallof Press (Cable, core), Cable Low–High (Cable, core), Cable High–Low (Cable, core)",
-      "target": "backend",
+      "text": "Make all dropdown menus scrollable when content exceeds viewport height, particularly the exercise selection dropdowns in workout creation and weight logging forms",
+      "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-current"
         ],
         "quotes": [
-          "include these exercies: | Exercise | Machine Type | Muscle Group |"
+          "allow me to scroll drop-down menus"
         ]
       },
       "acceptanceCriteria": [
-        "All 30 exercises are created in the backend with correct names, equipment types, and muscle groups",
-        "Exercise names match the provided table exactly including any special characters and capitalization",
-        "Equipment types are correctly mapped (Free Weight, Machine, Dumbbell, Cable)",
-        "Muscle groups are correctly mapped (lower body, chest, back, shoulders, biceps, triceps, core)"
+        "Dropdown menus display a scrollbar when content height exceeds the container",
+        "Users can scroll through all available options in exercise selection dropdowns",
+        "Dropdown remains positioned correctly and does not overflow the viewport"
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
+      "text": "Fix issues on the workout page to ensure proper functionality and display",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-current"
+        ],
+        "quotes": [
+          "fix workout page"
         ]
       },
       "acceptanceCriteria": [
-        "The seed button in ExerciseLibrary triggers creation of all 30 exercises",
-        "Exercises appear in the library after seeding with proper filtering capabilities",
-        "No duplicate exercises are created if seed is triggered multiple times"
+        "Workout page loads without errors",
+        "All workout data displays correctly",
+        "User can navigate and interact with workout features as intended"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the existing exercise data model or validation logic",
-    "Maintain the existing equipment type and muscle group validation in the backend"
+    "Do not modify backend Motoko code",
+    "Maintain existing dark theme styling",
+    "Preserve current workout and exercise data structures"
   ],
   "nonGoals": [
-    "Adding any exercises beyond the 30 specified in the table",
-    "Modifying the UI layout or styling of the exercise library",
-    "Creating workout templates using these exercises"
+    "Adding new workout features",
+    "Changing the exercise library structure",
+    "Modifying authentication flow"
   ],
   "imageRequirements": {
     "required": [],

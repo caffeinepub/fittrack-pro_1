@@ -1,16 +1,28 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Fitness/workout tracking app with exercise library categorized by machine type and muscle group",
+  "summary": "Fitness/workout app with exercise library and workout tracking functionality",
   "architectural_notes": [
-    "Exercise data model includes: name, machine type (Free Weight, Machine, Dumbbell, Cable), and muscle group"
+    "App includes exercise library with equipment type classification",
+    "Contains 28 exercises with associated equipment information"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Dropdown menus are not scrollable",
+    "Workout page has unspecified issues"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-ensure-the-existing-seed-functionality-in-the-exerciselibrary-page-can-populate-these-30-exercises-into-the-library-when-triggered",
-      "title": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
+      "id": "feature-make-all-dropdown-menus-scrollable-when-content-exceeds-viewport-height-particularly-the-exercise-selection-dropdowns-in-workout-creation-and-weight-logging-forms",
+      "title": "Make all dropdown menus scrollable when content exceeds viewport height, particularly the exercise selection dropdowns in workout creation and weight logging forms",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-issues-on-the-workout-page-to-ensure-proper-functionality-and-display",
+      "title": "Fix issues on the workout page to ensure proper functionality and display",
       "reqIds": [
         "REQ-2"
       ],
@@ -20,20 +32,19 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Pre-populate exercise library with 30 exercises across lower body, chest, back, shoulders, biceps, triceps, and core muscle groups",
+      "summary": "Enable scrolling in dropdown menus",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Add 30 pre-defined exercises to the backend exercise library with the following data: Alternating Single-Leg Squat (Free Weight, lower body), Machine Single-Leg Extensions (Machine, lower body), Single-Leg Hamstring Curls (Machine, lower body), Hip Adduction (Machine, lower body), Dumbbell Incline Bench Press (Dumbbell, chest), Machine Chest Press (Machine, chest), Machine Fly / Machine Chest Fly (Machine, chest), Dumbbell Chest Press (Dumbbell, chest), Machine Supported Row (Machine, back), Machine Lat Pulldown (Machine, back), Cable Row / Cable Back Rows (Cable, back), Closed-Grip Cable Lat Pulldowns (Cable, back), Machine Rear Delt Fly (Machine, shoulders), Machine Shoulder Raises (Machine, shoulders), Dumbbell Shoulder Press (Dumbbell, shoulders), Dumbbell Shoulder Raises (Dumbbell, shoulders), Cable Shoulder Face Pulls (Cable, shoulders), Preacher Bench Bicep Curls (Free Weight, biceps), Preacher Bench Hammer Curls (Free Weight, biceps), Dumbbell Incline Bicep Curls (Dumbbell, biceps), Dumbbell Hammer Curls (Dumbbell, biceps), Dumbbell Preacher Bench Hammer Curls (Dumbbell, biceps), Tricep Overhead Extension (Cable, triceps), Cable Tricep Overhead Extension (Cable, triceps), Tricep Pulldown (Cable, triceps), Reverse Grip Tricep Pulldown (Cable, triceps), Cable Tricep Pulldowns (Cable, triceps), Cable Pallof Press (Cable, core), Cable Low–High (Cable, core), Cable High–Low (Cable, core)",
-      "reqIds": [
-        "REQ-1"
-      ],
+      "summary": "Fix workout page issues",
+      "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Pre-populate exercise library with 30 exercises",
+  "gameProjectType": "none",
+  "projectName": "FitTrack Pro",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

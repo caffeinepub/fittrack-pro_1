@@ -1,21 +1,57 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Pre-populate exercise library with 30 exercises",
+  "title": "Enable dropdown scrolling and fix workout page",
   "requirements": [
     {
-      "id": "REQ-2",
-      "summary": "Update seed functionality to populate 30 pre-defined exercises with correct names, equipment types, and muscle groups",
+      "id": "REQ-1",
+      "summary": "Make all dropdown menus scrollable when content exceeds viewport height",
       "acceptanceCriteria": [
-        "The seed button in ExerciseLibrary triggers creation of all 30 exercises",
-        "Exercises appear in the library after seeding with proper filtering capabilities",
-        "No duplicate exercises are created if seed is triggered multiple times"
+        "Dropdown menus display a scrollbar when content height exceeds the container",
+        "Users can scroll through all available options in exercise selection dropdowns",
+        "Dropdown remains positioned correctly and does not overflow the viewport"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/ExerciseLibrary.tsx",
+          "path": "frontend/src/pages/WorkoutForm.tsx",
           "operation": "modify",
-          "description": "Update the seedExercises function to replace the existing sample exercises with the 30 exercises specified in the BuildRequest. Include all exercises with their exact names (preserving capitalization and special characters), correct equipment types (Free Weight, Machine, Dumbbell, Cable), and muscle groups (lower body, chest, back, shoulders, biceps, triceps, core). Implement duplicate prevention by checking if exercises already exist before creating them."
+          "description": "Update exercise selection dropdown to include max-height constraint with overflow-y-auto for scrollable behavior when exercise list exceeds viewport height. Ensure dropdown container uses proper positioning and z-index to prevent viewport overflow."
+        },
+        {
+          "path": "frontend/src/pages/LogWeight.tsx",
+          "operation": "modify",
+          "description": "Update exercise selection dropdown to include max-height constraint with overflow-y-auto for scrollable behavior. Apply consistent styling with WorkoutForm dropdown to maintain dark theme and ensure proper scroll functionality when exercise list is long."
+        },
+        {
+          "path": "frontend/src/components/ui/select.tsx",
+          "operation": "modify",
+          "description": "If using shadcn/ui Select component, modify SelectContent to include max-height and overflow-y-auto classes. Verify the component's usage instructions before implementing. Ensure SelectViewport or content wrapper has scrollable container properties that work across all dropdown instances in the app."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Fix issues on the workout page to ensure proper functionality and display",
+      "acceptanceCriteria": [
+        "Workout page loads without errors",
+        "All workout data displays correctly",
+        "User can navigate and interact with workout features as intended"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/WorkoutsList.tsx",
+          "operation": "modify",
+          "description": "Update WorkoutsList page to properly fetch and display workout data using the useWorkouts query hook. Replace empty state implementation with actual workout list rendering that shows workout cards with name, exercise count, and navigation to detail view. Add error handling for failed queries."
+        },
+        {
+          "path": "frontend/src/pages/WorkoutDetail.tsx",
+          "operation": "modify",
+          "description": "Enhance WorkoutDetail page to display full workout information including exercise names by fetching exercise details for each exerciseId in the workout. Add edit and delete functionality with proper navigation. Handle loading and error states appropriately."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Verify workout-related routes are properly configured in the router, including WorkoutsList, WorkoutDetail, and WorkoutForm routes. Ensure route parameters for workout ID are correctly defined and navigation paths are consistent across the application."
         }
       ]
     }

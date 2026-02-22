@@ -1,11 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Pre-populate the exercise library with 30 predefined exercises covering various muscle groups and equipment types.
+**Goal:** Fix dropdown menu scrolling and resolve workout page issues.
 
 **Planned changes:**
-- Add 30 exercises to the backend with specific names, equipment types (Free Weight, Machine, Dumbbell, Cable), and muscle groups (lower body, chest, back, shoulders, biceps, triceps, core)
-- Update the seed functionality in the ExerciseLibrary page to populate these 30 exercises
-- Prevent duplicate exercises when seeding multiple times
+- Make all dropdown menus scrollable when content exceeds viewport height, especially exercise selection dropdowns
+- Fix workout page functionality and display issues
 
-**User-visible outcome:** Users can seed the exercise library with 30 predefined exercises covering all major muscle groups and equipment types, making it immediately usable for creating workouts.
+**User-visible outcome:** Users can scroll through long dropdown menus to select exercises, and the workout page works properly without errors.
