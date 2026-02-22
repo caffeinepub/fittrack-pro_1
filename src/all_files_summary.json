@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Motoko backend actor implementing CRUD operations for exercises, workouts, and weight entries with validation for equipment types and muscle groups.",
+  "feature_evidence.json": "Feature evidence report mapping implemented features (dark mode, exercise library, workout creation, weight logging, progress tracking) to their corresponding files and test IDs.",
+  "frontend-file-summaries.txt": "JSON summary of frontend files describing the dark mode styling, routing, React Query hooks, navigation, and all page components for the fitness tracking app.",
+  "frontend/index.css": "Tailwind CSS configuration with OKLCH color system defining dark mode theme variables and base styles for the fitness application.",
+  "frontend/index.html": "HTML entry point for the FitTrack Pro application with root div and module script reference.",
+  "frontend/src/App.tsx": "Main React application component configuring TanStack Router with routes for exercises, workouts, logging, and progress pages, wrapped in dark theme provider.",
+  "frontend/src/components/ExerciseCard.tsx": "Reusable card component displaying exercise details with color-coded badges for equipment type and muscle group.",
+  "frontend/src/components/Navigation.tsx": "Sticky header navigation with app branding and active-state links to Exercises, Workouts, Log, and Progress pages.",
+  "frontend/src/hooks/useActor.ts": "React Query hook managing authenticated/anonymous backend actor instances with automatic query invalidation on identity changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides React context and hooks for Internet Identity authentication, managing login state, identity persistence, and delegation validation using @dfinity/auth-client.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching and mutating workout data including exercises, workouts, and weight entries, using the backend actor from useActor hook.",
+  "frontend/src/index.css": "Tailwind CSS configuration with custom CSS variables for light and dark theme colors, including primary, secondary, destructive, and chart color definitions.",
+  "frontend/src/main.tsx": "Application entry point that sets up React Query and Internet Identity providers, then renders the App component into the root DOM element.",
+  "frontend/src/pages/ExerciseLibrary.tsx": "Displays a filterable exercise library with equipment and muscle group filters, includes a seed button to populate initial exercises, and renders ExerciseCard components.",
+  "frontend/src/pages/LogWeight.tsx": "Form page for logging weight entries with exercise selection, weight, reps, and sets inputs, showing success feedback after submission.",
+  "frontend/src/pages/WeightProgress.tsx": "Displays weight progress history for a selected exercise with trend indicators (up/down/same) comparing consecutive entries and formatted dates.",
+  "frontend/src/pages/WorkoutDetail.tsx": "Displays details of a single workout including its name and number of exercises, with navigation back to the workouts list and loading/error states.",
+  "frontend/src/pages/WorkoutForm.tsx": "Form component for creating or editing workouts with name input, searchable exercise selection with toggle functionality, and save/update mutations with toast notifications.",
+  "frontend/src/pages/WorkoutsList.tsx": "Lists all user workouts with a button to create new workouts, currently showing an empty state placeholder when no workouts exist.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration with custom theme extending colors using OKLCH color space, custom fonts (Inter and Rajdhani), animations, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Project state tracking document listing implemented features including dark mode, exercise filtering, workout creation, weight logging, and progress tracking with pending feature requests."
+}

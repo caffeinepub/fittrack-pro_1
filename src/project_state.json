@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Dark mode workout tracking app with weight progress tracking, custom workout creation, and exercise filtering by equipment type and muscle group",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-implement-dark-mode-ui-theme-throughout-the-entire-application-with-appropriate-dark-backgrounds-light-text-and-sufficient-contrast-for-readability",
+      "title": "Implement dark mode UI theme throughout the entire application with appropriate dark backgrounds, light text, and sufficient contrast for readability",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-exercise-library-page-with-filtering-ui-that-allows-users-to-filter-by-equipment-type-dropdown-with-dumbbell-barbell-free-weight-machine-plate-loaded-machine-cable-and-muscle-group-dropdown-with-back-chest-biceps-triceps-shoulders-core-lower-body-displaying-filtered-results-alphabetically",
+      "title": "Create exercise library page with filtering UI that allows users to filter by equipment type (dropdown with: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable) and muscle group (dropdown with: back, chest, biceps, triceps, shoulders, core, lower body), displaying filtered results alphabetically",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-workout-creation-editing-page-that-allows-users-to-name-a-workout-search-and-add-exercises-to-it-and-save-the-complete-workout",
+      "title": "Create workout creation/editing page that allows users to name a workout, search and add exercises to it, and save the complete workout",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-weight-logging-interface-where-users-can-select-an-exercise-enter-weight-reps-and-sets-and-log-the-entry-with-current-date-time",
+      "title": "Create weight logging interface where users can select an exercise, enter weight, reps, and sets, and log the entry with current date/time",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-weight-progress-view-that-displays-historical-weight-entries-for-a-selected-exercise-showing-date-weight-reps-and-sets-in-chronological-order-with-visual-indication-of-progress-trends",
+      "title": "Create weight progress view that displays historical weight entries for a selected exercise, showing date, weight, reps, and sets in chronological order with visual indication of progress trends",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-workouts-list-page-that-displays-all-saved-workouts-with-ability-to-view-workout-details-exercises-included-and-start-a-workout-session",
+      "title": "Create workouts list page that displays all saved workouts with ability to view workout details (exercises included) and start a workout session",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Dark mode UI design",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Track weight progress over time",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create custom workouts",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Filter exercises by equipment type (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Filter exercises by muscle group (back, chest, biceps, triceps, shoulders, core, lower body)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Organize exercises alphabetically",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Create backend data model for Exercise with fields: name (Text), equipmentType (Text: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable), muscleGroup (Text: back, chest, biceps, triceps, shoulders, core, lower body)",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Create backend data model for Workout with fields: name (Text), exerciseIds (array of exercise references), createdAt (timestamp)",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Create backend data model for WeightEntry with fields: exerciseId (reference to exercise), weight (Nat), reps (Nat), sets (Nat), date (timestamp), workoutId (optional reference to workout)",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Implement backend methods to create, read, update, and delete exercises with validation for equipment type and muscle group values",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Implement backend methods to create, read, update, and delete workouts",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Implement backend methods to log weight entries and retrieve weight progress history for a given exercise, sorted by date",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Implement backend query method to filter exercises by equipment type, returning exercises that match the specified equipment type",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Implement backend query method to filter exercises by muscle group, returning exercises that target the specified muscle group",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Implement backend query method to return all exercises sorted alphabetically by name",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Seed the backend with a comprehensive starter exercise database including common exercises across all equipment types and muscle groups",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "FitTrack Pro",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

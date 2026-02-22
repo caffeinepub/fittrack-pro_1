@@ -1,0 +1,122 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-implement-dark-mode-ui-theme-throughout-the-entire-application-with-appropriate-dark-backgrounds-light-text-and-sufficient-contrast-for-readability",
+      "featureTitle": "Implement dark mode UI theme throughout the entire application with appropriate dark backgrounds, light text, and sufficient contrast for readability",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-exercise-library-page-with-filtering-ui-that-allows-users-to-filter-by-equipment-type-dropdown-with-dumbbell-barbell-free-weight-machine-plate-loaded-machine-cable-and-muscle-group-dropdown-with-back-chest-biceps-triceps-shoulders-core-lower-body-displaying-filtered-results-alphabetically",
+      "featureTitle": "Create exercise library page with filtering UI that allows users to filter by equipment type (dropdown with: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable) and muscle group (dropdown with: back, chest, biceps, triceps, shoulders, core, lower body), displaying filtered results alphabetically",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ExerciseCard.tsx",
+        "frontend/src/pages/ExerciseLibrary.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-11"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-workout-creation-editing-page-that-allows-users-to-name-a-workout-search-and-add-exercises-to-it-and-save-the-complete-workout",
+      "featureTitle": "Create workout creation/editing page that allows users to name a workout, search and add exercises to it, and save the complete workout",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/WorkoutForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-weight-logging-interface-where-users-can-select-an-exercise-enter-weight-reps-and-sets-and-log-the-entry-with-current-date-time",
+      "featureTitle": "Create weight logging interface where users can select an exercise, enter weight, reps, and sets, and log the entry with current date/time",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/LogWeight.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-weight-progress-view-that-displays-historical-weight-entries-for-a-selected-exercise-showing-date-weight-reps-and-sets-in-chronological-order-with-visual-indication-of-progress-trends",
+      "featureTitle": "Create weight progress view that displays historical weight entries for a selected exercise, showing date, weight, reps, and sets in chronological order with visual indication of progress trends",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/WeightProgress.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-workouts-list-page-that-displays-all-saved-workouts-with-ability-to-view-workout-details-exercises-included-and-start-a-workout-session",
+      "featureTitle": "Create workouts list page that displays all saved workouts with ability to view workout details (exercises included) and start a workout session",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/Navigation.tsx",
+        "frontend/src/pages/WorkoutDetail.tsx",
+        "frontend/src/pages/WorkoutsList.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
