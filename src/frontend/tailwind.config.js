@@ -87,4 +87,3 @@ export default {
     },
     plugins: [typography, containerQueries, animate]
 };
-

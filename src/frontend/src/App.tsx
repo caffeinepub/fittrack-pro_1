@@ -1,6 +1,7 @@
 import { RouterProvider, createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
 import { ThemeProvider } from 'next-themes';
 import Navigation from './components/Navigation';
+import Home from './pages/Home';
 import ExerciseLibrary from './pages/ExerciseLibrary';
 import WorkoutsList from './pages/WorkoutsList';
 import WorkoutDetail from './pages/WorkoutDetail';
@@ -28,7 +29,7 @@ const rootRoute = createRootRoute({
 const indexRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: ExerciseLibrary,
+  component: Home,
 });
 
 const exercisesRoute = createRoute({

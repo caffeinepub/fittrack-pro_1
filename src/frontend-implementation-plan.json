@@ -1,39 +1,95 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Update UI color scheme to black and red theme",
+  "title": "Add home page and exercise library management",
   "requirements": [
     {
-      "id": "REQ-29",
-      "summary": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme",
+      "id": "REQ-1",
+      "summary": "Create a home page as the landing route with navigation to main sections",
       "acceptanceCriteria": [
-        "Primary color scheme uses red tones instead of current colors",
-        "Background colors use true black or near-black values",
-        "Text maintains sufficient contrast for readability on black backgrounds",
-        "Interactive elements (buttons, links, badges) use red accent colors",
-        "All CSS color variables are updated to reflect black and red theme"
+        "Home page is accessible at the root route \"/\"",
+        "Navigation to Exercise Library, Workouts, Log Weight, and Progress sections is present",
+        "Page follows the existing dark theme styling with red accents"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/pages/Home.tsx",
+          "operation": "create",
+          "description": "Create a home page component with hero section and navigation cards to Exercise Library, Workouts, Log Weight, and Progress sections. Use existing dark theme with red accent colors from index.css. Include app branding and brief description of FitTrack Pro features."
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update all OKLCH color variables in the :root selector for dark mode theme. Replace background colors with true black (0% 0 0) or near-black values. Update primary colors to red tones using OKLCH format (e.g., 55% 0.22 25 for primary red). Ensure foreground colors use high-lightness values for sufficient contrast on black backgrounds. Update accent, muted, and destructive color variables to use red-based hues. Maintain WCAG AA contrast ratios for all text colors on black backgrounds."
+          "description": "Register the Home page as the root route (\"/\") in the TanStack Router configuration. Add route definition before or alongside existing routes for exercises, workouts, logging, and progress pages."
+        },
+        {
+          "path": "frontend/src/components/Navigation.tsx",
+          "operation": "modify",
+          "description": "Add a link to the Home page in the navigation header. Ensure the home link has proper active state styling consistent with other navigation links."
         }
       ]
     },
     {
-      "id": "REQ-30",
-      "summary": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme",
+      "id": "REQ-2",
+      "summary": "Add functionality to create new exercises in the exercise library",
       "acceptanceCriteria": [
-        "Tailwind theme colors are updated to match the black and red palette",
-        "All color references in the config align with the updated CSS variables",
-        "Chart colors maintain sufficient contrast on black backgrounds"
+        "User can add a new exercise through a form with name, equipment, and muscle group inputs",
+        "New exercise is persisted in the backend",
+        "Exercise library updates to show the new exercise immediately after creation"
       ],
       "file_operations": [
         {
-          "path": "frontend/tailwind.config.js",
+          "path": "frontend/src/hooks/useQueries.ts",
           "operation": "modify",
-          "description": "Update the theme.extend.colors configuration to align with the new black and red color scheme. Ensure all color keys (background, foreground, primary, secondary, muted, accent, destructive, border, input, ring) reference the updated CSS variables from index.css. Update chart color definitions (chart-1 through chart-5) to use red-toned variations that maintain sufficient contrast on black backgrounds. Verify that all OKLCH color references match the new black and red palette."
+          "description": "Add a useCreateExerciseMutation hook that calls the backend createExercise method with name, equipmentType, and muscleGroup parameters. Include automatic query invalidation to refresh the exercise list after successful creation."
+        },
+        {
+          "path": "frontend/src/pages/ExerciseLibrary.tsx",
+          "operation": "modify",
+          "description": "Add a button to open a create exercise dialog/form. Include form fields for exercise name (text input), equipment type (dropdown), and muscle group (dropdown). Wire the form submission to the useCreateExerciseMutation hook. Show success toast notification after creation. Ensure the exercise list automatically refreshes to display the newly created exercise."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add functionality to edit existing exercises in the exercise library",
+      "acceptanceCriteria": [
+        "User can edit an existing exercise's details",
+        "Changes are persisted in the backend",
+        "Exercise library reflects the updated information immediately"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a useUpdateExerciseMutation hook that calls the backend updateExercise method with id, name, equipmentType, and muscleGroup parameters. Include automatic query invalidation to refresh the exercise list after successful update."
+        },
+        {
+          "path": "frontend/src/components/ExerciseCard.tsx",
+          "operation": "modify",
+          "description": "Add an edit button to each ExerciseCard that opens an edit dialog/form pre-populated with the exercise's current details. Include form fields for name, equipment type, and muscle group. Wire the form submission to the useUpdateExerciseMutation hook. Show success toast notification after update."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add functionality to delete exercises from the exercise library",
+      "acceptanceCriteria": [
+        "User can delete an exercise from the library",
+        "Deletion is persisted in the backend",
+        "Exercise is removed from the library view immediately",
+        "Confirmation prompt is shown before deletion"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a useDeleteExerciseMutation hook that calls the backend deleteExercise method with the exercise id parameter. Include automatic query invalidation to refresh the exercise list after successful deletion."
+        },
+        {
+          "path": "frontend/src/components/ExerciseCard.tsx",
+          "operation": "modify",
+          "description": "Add a delete button to each ExerciseCard that triggers a confirmation dialog before deletion. Wire the confirmation action to the useDeleteExerciseMutation hook. Show success toast notification after deletion. Ensure the exercise is removed from the library view immediately after successful deletion."
         }
       ]
     }

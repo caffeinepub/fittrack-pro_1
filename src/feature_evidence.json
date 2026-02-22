@@ -2,10 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-dark-mode-color-palette-in-frontend-index-css-to-use-a-black-and-red-color-scheme-replacing-the-current-oklch-color-variables-with-black-backgrounds-and-red-accent-colors-for-primary-elements-buttons-and-interactive-components",
-      "featureTitle": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme, replacing the current OKLCH color variables with black backgrounds and red accent colors for primary elements, buttons, and interactive components",
+      "featureId": "feature-create-a-home-page-as-the-landing-route-with-navigation-to-the-main-sections-exercise-library-workouts-log-weight-and-progress",
+      "featureTitle": "Create a home page as the landing route (\"/\") with navigation to the main sections: Exercise Library, Workouts, Log Weight, and Progress",
       "files": [
-        "frontend/src/index.css"
+        "frontend/src/App.tsx",
+        "frontend/src/components/Navigation.tsx",
+        "frontend/src/pages/Home.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,15 +17,16 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-29"
+        "REQ-1"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-tailwind-css-configuration-in-frontend-tailwind-config-js-to-reflect-the-black-and-red-color-scheme-ensuring-all-custom-theme-colors-use-appropriate-black-and-red-values-that-integrate-with-the-updated-css-variables",
-      "featureTitle": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme, ensuring all custom theme colors use appropriate black and red values that integrate with the updated CSS variables",
+      "featureId": "feature-add-functionality-to-create-new-exercises-in-the-exercise-library-with-fields-for-name-equipment-type-and-muscle-group",
+      "featureTitle": "Add functionality to create new exercises in the exercise library with fields for name, equipment type, and muscle group",
       "files": [
-        "frontend/tailwind.config.js"
+        "frontend/src/hooks/useQueries.ts",
+        "frontend/src/pages/ExerciseLibrary.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -33,7 +36,45 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-30"
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-functionality-to-edit-existing-exercises-in-the-exercise-library-allowing-updates-to-name-equipment-type-and-muscle-group",
+      "featureTitle": "Add functionality to edit existing exercises in the exercise library, allowing updates to name, equipment type, and muscle group",
+      "files": [
+        "frontend/src/components/ExerciseCard.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-functionality-to-delete-exercises-from-the-exercise-library",
+      "featureTitle": "Add functionality to delete exercises from the exercise library",
+      "files": [
+        "frontend/src/components/ExerciseCard.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

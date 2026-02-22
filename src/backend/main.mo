@@ -44,14 +44,34 @@ actor {
   let weightEntries = Map.empty<Nat, WeightEntry>();
 
   func validateEquipmentType(equipmentType : Text) {
-    let validTypes = ["Dumbbell", "Barbell", "Free Weight", "Machine", "Plate-Loaded Machine", "Cable"];
+    let validTypes = [
+      "Dumbbell",
+      "Barbell",
+      "Free Weight",
+      "Machine",
+      "Plate-Loaded Machine",
+      "Cable",
+      "Treadmill",
+      "Assault Bike",
+      "Bike",
+      "Stairmaster",
+    ];
     if (not Array.fromIter(validTypes.values()).any(func(x) { x == equipmentType })) {
       Runtime.trap("Invalid equipment type");
     };
   };
 
   func validateMuscleGroup(muscleGroup : Text) {
-    let validGroups = ["back", "chest", "biceps", "triceps", "shoulders", "core", "lower body"];
+    let validGroups = [
+      "back",
+      "chest",
+      "biceps",
+      "triceps",
+      "shoulders",
+      "core",
+      "lower body",
+      "full body",
+    ];
     if (not Array.fromIter(validGroups.values()).any(func(x) { x == muscleGroup })) {
       Runtime.trap("Invalid muscle group");
     };
@@ -214,29 +234,29 @@ actor {
       { name = "Dumbbell Lateral Raises"; equipmentType = "Dumbbell"; muscleGroup = "shoulders" },
       { name = "Dumbbell Bicep Curls"; equipmentType = "Dumbbell"; muscleGroup = "biceps" },
       { name = "Dumbbell Tricep Extensions"; equipmentType = "Dumbbell"; muscleGroup = "triceps" },
-      // Barbell and Free Weight exercises
       { name = "Barbell Bench Press"; equipmentType = "Barbell"; muscleGroup = "chest" },
       { name = "Barbell Squats"; equipmentType = "Barbell"; muscleGroup = "lower body" },
       { name = "Barbell Deadlifts"; equipmentType = "Barbell"; muscleGroup = "back" },
       { name = "Barbell Rows"; equipmentType = "Barbell"; muscleGroup = "back" },
       { name = "Barbell Bicep Curls"; equipmentType = "Barbell"; muscleGroup = "biceps" },
       { name = "Barbell Tricep Extensions"; equipmentType = "Barbell"; muscleGroup = "triceps" },
-      // Machine exercises
       { name = "Seated Chest Press"; equipmentType = "Machine"; muscleGroup = "chest" },
       { name = "Lat Pulldown"; equipmentType = "Machine"; muscleGroup = "back" },
       { name = "Leg Extension"; equipmentType = "Machine"; muscleGroup = "lower body" },
       { name = "Leg Curl"; equipmentType = "Machine"; muscleGroup = "lower body" },
       { name = "Shoulder Press Machine"; equipmentType = "Machine"; muscleGroup = "shoulders" },
-      // Plate-Loaded Machine exercises
       { name = "Hack Squat"; equipmentType = "Plate-Loaded Machine"; muscleGroup = "lower body" },
       { name = "Seated Calf Raise"; equipmentType = "Plate-Loaded Machine"; muscleGroup = "lower body" },
       { name = "Chest Press Machine"; equipmentType = "Plate-Loaded Machine"; muscleGroup = "chest" },
-      // Cable exercises
       { name = "Cable Tricep Pushdowns"; equipmentType = "Cable"; muscleGroup = "triceps" },
       { name = "Cable Bicep Curls"; equipmentType = "Cable"; muscleGroup = "biceps" },
       { name = "Cable Flyes"; equipmentType = "Cable"; muscleGroup = "chest" },
       { name = "Cable Rows"; equipmentType = "Cable"; muscleGroup = "back" },
       { name = "Cable Lat Pulldowns"; equipmentType = "Cable"; muscleGroup = "back" },
+      { name = "Treadmill Running"; equipmentType = "Treadmill"; muscleGroup = "full body" },
+      { name = "Assault Bike Sprints"; equipmentType = "Assault Bike"; muscleGroup = "full body" },
+      { name = "Stationary Bike"; equipmentType = "Bike"; muscleGroup = "lower body" },
+      { name = "Stairmaster Climbing"; equipmentType = "Stairmaster"; muscleGroup = "lower body" },
     ];
 
     for (exercise in initialExercises.values()) {

@@ -43,6 +43,69 @@ export function useFilterExercisesByMuscleGroup(muscleGroup: string | null) {
   });
 }
 
+export function useCreateExercise() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      name,
+      equipmentType,
+      muscleGroup,
+    }: {
+      name: string;
+      equipmentType: string;
+      muscleGroup: string;
+    }) => {
+      if (!actor) throw new Error('Actor not initialized');
+      return actor.createExercise(name, equipmentType, muscleGroup);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['exercises'] });
+    },
+  });
+}
+
+export function useUpdateExercise() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({
+      id,
+      name,
+      equipmentType,
+      muscleGroup,
+    }: {
+      id: bigint;
+      name: string;
+      equipmentType: string;
+      muscleGroup: string;
+    }) => {
+      if (!actor) throw new Error('Actor not initialized');
+      return actor.updateExercise(id, name, equipmentType, muscleGroup);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['exercises'] });
+    },
+  });
+}
+
+export function useDeleteExercise() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: bigint) => {
+      if (!actor) throw new Error('Actor not initialized');
+      return actor.deleteExercise(id);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['exercises'] });
+    },
+  });
+}
+
 export function useGetWorkout(id: bigint | null) {
   const { actor, isFetching } = useActor();
 

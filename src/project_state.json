@@ -1,136 +1,44 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
-  "summary": "Dark mode workout tracking app with black and red color scheme, weight progress tracking, custom workout creation, exercise filtering by equipment type and muscle group, and full CRUD operations for exercises in the library",
-  "architectural_notes": [],
+  "projectStateVersion": 3,
+  "summary": "Fitness exercise library application with exercise management capabilities",
+  "architectural_notes": [
+    "Exercise library with CRUD operations for exercises",
+    "Muscle groups include: full body (and others)",
+    "Equipment types include: treadmill, assault bike, bike, Stairmaster"
+  ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-implement-dark-mode-ui-theme-throughout-the-entire-application-with-appropriate-dark-backgrounds-light-text-and-sufficient-contrast-for-readability",
-      "title": "Implement dark mode UI theme throughout the entire application with appropriate dark backgrounds, light text, and sufficient contrast for readability",
+      "id": "feature-create-a-home-page-as-the-landing-route-with-navigation-to-the-main-sections-exercise-library-workouts-log-weight-and-progress",
+      "title": "Create a home page as the landing route (\"/\") with navigation to the main sections: Exercise Library, Workouts, Log Weight, and Progress",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-exercise-library-page-with-filtering-ui-that-allows-users-to-filter-by-equipment-type-dropdown-with-dumbbell-barbell-free-weight-machine-plate-loaded-machine-cable-and-muscle-group-dropdown-with-back-chest-biceps-triceps-shoulders-core-lower-body-displaying-filtered-results-alphabetically",
-      "title": "Create exercise library page with filtering UI that allows users to filter by equipment type (dropdown with: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable) and muscle group (dropdown with: back, chest, biceps, triceps, shoulders, core, lower body), displaying filtered results alphabetically",
+      "id": "feature-add-functionality-to-create-new-exercises-in-the-exercise-library-with-fields-for-name-equipment-type-and-muscle-group",
+      "title": "Add functionality to create new exercises in the exercise library with fields for name, equipment type, and muscle group",
       "reqIds": [
-        "REQ-11"
+        "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-workout-creation-editing-page-that-allows-users-to-name-a-workout-search-and-add-exercises-to-it-and-save-the-complete-workout",
-      "title": "Create workout creation/editing page that allows users to name a workout, search and add exercises to it, and save the complete workout",
+      "id": "feature-add-functionality-to-edit-existing-exercises-in-the-exercise-library-allowing-updates-to-name-equipment-type-and-muscle-group",
+      "title": "Add functionality to edit existing exercises in the exercise library, allowing updates to name, equipment type, and muscle group",
       "reqIds": [
-        "REQ-12"
+        "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-weight-logging-interface-where-users-can-select-an-exercise-enter-weight-reps-and-sets-and-log-the-entry-with-current-date-time",
-      "title": "Create weight logging interface where users can select an exercise, enter weight, reps, and sets, and log the entry with current date/time",
+      "id": "feature-add-functionality-to-delete-exercises-from-the-exercise-library",
+      "title": "Add functionality to delete exercises from the exercise library",
       "reqIds": [
-        "REQ-13"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-weight-progress-view-that-displays-historical-weight-entries-for-a-selected-exercise-showing-date-weight-reps-and-sets-in-chronological-order-with-visual-indication-of-progress-trends",
-      "title": "Create weight progress view that displays historical weight entries for a selected exercise, showing date, weight, reps, and sets in chronological order with visual indication of progress trends",
-      "reqIds": [
-        "REQ-14"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-create-workouts-list-page-that-displays-all-saved-workouts-with-ability-to-view-workout-details-exercises-included-and-start-a-workout-session",
-      "title": "Create workouts list page that displays all saved workouts with ability to view workout details (exercises included) and start a workout session",
-      "reqIds": [
-        "REQ-15"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-edit-button-to-each-exercisecard-component-that-opens-an-edit-form-pre-populated-with-the-exercise-s-current-name-equipment-type-and-muscle-group",
-      "title": "Add edit button to each ExerciseCard component that opens an edit form pre-populated with the exercise's current name, equipment type, and muscle group",
-      "reqIds": [
-        "REQ-21"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-exercise-edit-form-with-name-input-and-dropdowns-for-equipment-type-and-muscle-group-with-save-functionality-that-calls-the-backend-update-method-and-refreshes-the-exercise-list",
-      "title": "Implement exercise edit form with name input and dropdowns for equipment type and muscle group, with save functionality that calls the backend update method and refreshes the exercise list",
-      "reqIds": [
-        "REQ-22"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-delete-button-to-each-exercisecard-component-with-confirmation-dialog-to-prevent-accidental-deletion",
-      "title": "Add delete button to each ExerciseCard component with confirmation dialog to prevent accidental deletion",
-      "reqIds": [
-        "REQ-23"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-delete-functionality-that-calls-backend-deleteexercise-method-and-removes-the-exercise-from-the-list-with-success-feedback",
-      "title": "Implement delete functionality that calls backend deleteExercise method and removes the exercise from the list with success feedback",
-      "reqIds": [
-        "REQ-24"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-add-new-exercise-button-to-the-exercise-library-page-that-opens-a-form-to-create-a-new-exercise-with-name-input-and-dropdowns-for-equipment-type-and-muscle-group",
-      "title": "Add 'Add New Exercise' button to the Exercise Library page that opens a form to create a new exercise with name input and dropdowns for equipment type and muscle group",
-      "reqIds": [
-        "REQ-25"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-new-exercise-creation-form-that-validates-input-and-calls-backend-addexercise-method-then-refreshes-the-exercise-list-and-shows-success-feedback",
-      "title": "Implement new exercise creation form that validates input and calls backend addExercise method, then refreshes the exercise list and shows success feedback",
-      "reqIds": [
-        "REQ-26"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-equipment-type-filter-dropdown-on-exercise-library-page-to-include-the-new-cardio-equipment-options-treadmill-assault-bike-bike-stairmaster",
-      "title": "Update equipment type filter dropdown on Exercise Library page to include the new cardio equipment options: Treadmill, Assault Bike, Bike, Stairmaster",
-      "reqIds": [
-        "REQ-27"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-muscle-group-filter-dropdown-on-exercise-library-page-to-include-full-body-option",
-      "title": "Update muscle group filter dropdown on Exercise Library page to include 'Full Body' option",
-      "reqIds": [
-        "REQ-28"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-dark-mode-color-palette-in-frontend-index-css-to-use-a-black-and-red-color-scheme-replacing-the-current-oklch-color-variables-with-black-backgrounds-and-red-accent-colors-for-primary-elements-buttons-and-interactive-components",
-      "title": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme, replacing the current OKLCH color variables with black backgrounds and red accent colors for primary elements, buttons, and interactive components",
-      "reqIds": [
-        "REQ-29"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-update-the-tailwind-css-configuration-in-frontend-tailwind-config-js-to-reflect-the-black-and-red-color-scheme-ensuring-all-custom-theme-colors-use-appropriate-black-and-red-values-that-integrate-with-the-updated-css-variables",
-      "title": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme, ensuring all custom theme colors use appropriate black and red values that integrate with the updated CSS variables",
-      "reqIds": [
-        "REQ-30"
+        "REQ-4"
       ],
       "version": 1
     }
@@ -138,186 +46,42 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Dark mode UI design",
+      "summary": "Add home page",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Track weight progress over time",
+      "summary": "Enable editing, adding, and deleting exercises in exercise library",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Create custom workouts",
+      "summary": "Add 'full body' to muscle group options",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-4",
-      "summary": "Filter exercises by equipment type (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable)",
+      "summary": "Add treadmill, assault bike, bike, and Stairmaster to equipment options",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-5",
-      "summary": "Filter exercises by muscle group (back, chest, biceps, triceps, shoulders, core, lower body)",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Organize exercises alphabetically",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Create backend data model for Exercise with fields: name (Text), equipmentType (Text: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable), muscleGroup (Text: back, chest, biceps, triceps, shoulders, core, lower body)",
-      "reqIds": [
-        "REQ-2"
-      ],
       "status": "pending"
     },
     {
       "id": "AR-9",
-      "summary": "Create backend data model for Workout with fields: name (Text), exerciseIds (array of exercise references), createdAt (timestamp)",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Create backend data model for WeightEntry with fields: exerciseId (reference to exercise), weight (Nat), reps (Nat), sets (Nat), date (timestamp), workoutId (optional reference to workout)",
-      "reqIds": [
-        "REQ-4"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Implement backend methods to create, read, update, and delete exercises with validation for equipment type and muscle group values",
+      "summary": "Add 'Full Body' as a valid muscle group option in the backend MuscleGroup type and include it in all muscle group selections",
       "reqIds": [
         "REQ-5"
       ],
       "status": "pending"
     },
     {
-      "id": "AR-12",
-      "summary": "Implement backend methods to create, read, update, and delete workouts",
+      "id": "AR-10",
+      "summary": "Add Treadmill, Assault Bike, Bike, and Stairmaster as valid equipment options in the backend EquipmentType and include them in all equipment selections",
       "reqIds": [
         "REQ-6"
       ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-13",
-      "summary": "Implement backend methods to log weight entries and retrieve weight progress history for a given exercise, sorted by date",
-      "reqIds": [
-        "REQ-7"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-14",
-      "summary": "Implement backend query method to filter exercises by equipment type, returning exercises that match the specified equipment type",
-      "reqIds": [
-        "REQ-8"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-15",
-      "summary": "Implement backend query method to filter exercises by muscle group, returning exercises that target the specified muscle group",
-      "reqIds": [
-        "REQ-9"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-16",
-      "summary": "Implement backend query method to return all exercises sorted alphabetically by name",
-      "reqIds": [
-        "REQ-10"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-22",
-      "summary": "Seed the backend with a comprehensive starter exercise database including common exercises across all equipment types and muscle groups",
-      "reqIds": [
-        "REQ-16"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-23",
-      "summary": "Create UI for editing existing exercises in the exercise library",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-24",
-      "summary": "Create UI for adding new exercises to the exercise library",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-25",
-      "summary": "Create UI for deleting exercises from the exercise library",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-26",
-      "summary": "Add 'full body' to the muscle group options",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-27",
-      "summary": "Add cardio equipment types: Treadmill, Assault Bike, Bike, Stairmaster to equipment type options",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-28",
-      "summary": "Add 'Full Body' as a valid muscle group option to the backend validation alongside existing options (back, chest, biceps, triceps, shoulders, core, lower body)",
-      "reqIds": [
-        "REQ-17"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-29",
-      "summary": "Add cardio equipment types (Treadmill, Assault Bike, Bike, Stairmaster) to the backend equipment type validation alongside existing options (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable)",
-      "reqIds": [
-        "REQ-18"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-30",
-      "summary": "Create backend method to delete an exercise by ID, removing it from the exercise library",
-      "reqIds": [
-        "REQ-19"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-31",
-      "summary": "Create backend method to update an existing exercise, allowing modification of name, equipment type, and muscle group with validation",
-      "reqIds": [
-        "REQ-20"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-32",
-      "summary": "Update dark mode UI theme to use black and red color scheme throughout the application",
-      "reqIds": [],
       "status": "pending"
     }
   ],

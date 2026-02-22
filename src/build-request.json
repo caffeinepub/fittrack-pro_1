@@ -1,58 +1,129 @@
 {
   "kind": "build_request",
-  "title": "Update UI color scheme to black and red theme",
+  "title": "Add home page and exercise library management",
+  "projectName": "FitTrack Pro",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-29",
-      "text": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme, replacing the current OKLCH color variables with black backgrounds and red accent colors for primary elements, buttons, and interactive components",
+      "id": "REQ-1",
+      "text": "Create a home page as the landing route (\"/\") with navigation to the main sections: Exercise Library, Workouts, Log Weight, and Progress",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-user-latest"
+          "msg-6"
         ],
         "quotes": [
-          "make the app black and red"
+          "add a home page"
         ]
       },
       "acceptanceCriteria": [
-        "Primary color scheme uses red tones instead of current colors",
-        "Background colors use true black or near-black values",
-        "Text maintains sufficient contrast for readability on black backgrounds",
-        "Interactive elements (buttons, links, badges) use red accent colors",
-        "All CSS color variables are updated to reflect black and red theme"
+        "Home page is accessible at the root route \"/\"",
+        "Navigation to Exercise Library, Workouts, Log Weight, and Progress sections is present",
+        "Page follows the existing dark theme styling with red accents"
       ]
     },
     {
-      "id": "REQ-30",
-      "text": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme, ensuring all custom theme colors use appropriate black and red values that integrate with the updated CSS variables",
-      "target": "frontend",
+      "id": "REQ-2",
+      "text": "Add functionality to create new exercises in the exercise library with fields for name, equipment type, and muscle group",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-user-latest"
+          "msg-6"
         ],
         "quotes": [
-          "make the app black and red"
+          "allow me to edit, add, and delete exercises to the exercise library"
         ]
       },
       "acceptanceCriteria": [
-        "Tailwind theme colors are updated to match the black and red palette",
-        "All color references in the config align with the updated CSS variables",
-        "Chart colors maintain sufficient contrast on black backgrounds"
+        "User can add a new exercise through a form with name, equipment, and muscle group inputs",
+        "New exercise is persisted in the backend",
+        "Exercise library updates to show the new exercise immediately after creation"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Add functionality to edit existing exercises in the exercise library, allowing updates to name, equipment type, and muscle group",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "allow me to edit, add, and delete exercises to the exercise library"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can edit an existing exercise's details",
+        "Changes are persisted in the backend",
+        "Exercise library reflects the updated information immediately"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add functionality to delete exercises from the exercise library",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "allow me to edit, add, and delete exercises to the exercise library"
+        ]
+      },
+      "acceptanceCriteria": [
+        "User can delete an exercise from the library",
+        "Deletion is persisted in the backend",
+        "Exercise is removed from the library view immediately",
+        "Confirmation prompt is shown before deletion"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Add 'Full Body' as a valid muscle group option in the backend MuscleGroup type and include it in all muscle group selections",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Add full body to muscle group"
+        ]
+      },
+      "acceptanceCriteria": [
+        "MuscleGroup type includes 'Full Body' as a valid option",
+        "Full Body appears in muscle group filters and dropdowns",
+        "Exercises can be assigned to the Full Body muscle group"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add Treadmill, Assault Bike, Bike, and Stairmaster as valid equipment options in the backend EquipmentType and include them in all equipment selections",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Add treadmill, assault bike, bike and Stairmaster to equipment"
+        ]
+      },
+      "acceptanceCriteria": [
+        "EquipmentType includes Treadmill, Assault Bike, Bike, and Stairmaster as valid options",
+        "New equipment types appear in equipment filters and dropdowns",
+        "Exercises can be assigned to the new equipment types"
       ]
     }
   ],
   "constraints": [
-    "Do not modify backend files",
-    "Do not change component structure or functionality",
-    "Maintain sufficient contrast ratios for accessibility (WCAG AA minimum)",
-    "Preserve all existing features and interactions"
+    "Maintain single-actor architecture in backend/main.mo",
+    "Follow existing dark theme with red accent colors",
+    "Do not modify immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui"
   ],
   "nonGoals": [
-    "Adding new features or components",
-    "Changing layout or component hierarchy",
-    "Modifying backend data structures",
-    "Adding color customization settings"
+    "Changing the overall application structure or routing setup beyond adding the home page",
+    "Modifying the weight logging or progress tracking features",
+    "Adding user authentication or multi-user support",
+    "Changing the workout creation and management features"
   ],
   "imageRequirements": {
     "required": [],

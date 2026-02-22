@@ -1,21 +1,52 @@
 import { useState, useEffect } from 'react';
-import { useGetAllExercises, useSeedExercises } from '../hooks/useQueries';
+import { useGetAllExercises, useSeedExercises, useCreateExercise } from '../hooks/useQueries';
 import ExerciseCard from '../components/ExerciseCard';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Loader2, Filter } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Loader2, Filter, Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import type { Exercise } from '../backend';
 
-const EQUIPMENT_TYPES = ['Dumbbell', 'Barbell', 'Free Weight', 'Machine', 'Plate-Loaded Machine', 'Cable'];
-const MUSCLE_GROUPS = ['back', 'chest', 'biceps', 'triceps', 'shoulders', 'core', 'lower body'];
+const EQUIPMENT_TYPES = [
+  'Dumbbell',
+  'Barbell',
+  'Free Weight',
+  'Machine',
+  'Plate-Loaded Machine',
+  'Cable',
+  'Treadmill',
+  'Assault Bike',
+  'Bike',
+  'Stairmaster',
+];
+
+const MUSCLE_GROUPS = [
+  'back',
+  'chest',
+  'biceps',
+  'triceps',
+  'shoulders',
+  'core',
+  'lower body',
+  'full body',
+];
 
 export default function ExerciseLibrary() {
   const { data: exercises, isLoading } = useGetAllExercises();
   const seedMutation = useSeedExercises();
+  const createMutation = useCreateExercise();
   const [equipmentFilter, setEquipmentFilter] = useState<string>('all');
   const [muscleFilter, setMuscleFilter] = useState<string>('all');
   const [filteredExercises, setFilteredExercises] = useState<Exercise[]>([]);
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [newExercise, setNewExercise] = useState({
+    name: '',
+    equipmentType: '',
+    muscleGroup: '',
+  });
 
   useEffect(() => {
     if (!exercises) return;
@@ -42,6 +73,26 @@ export default function ExerciseLibrary() {
     }
   };
 
+  const handleCreateExercise = async () => {
+    if (!newExercise.name || !newExercise.equipmentType || !newExercise.muscleGroup) {
+      toast.error('Please fill in all fields');
+      return;
+    }
+
+    try {
+      await createMutation.mutateAsync({
+        name: newExercise.name,
+        equipmentType: newExercise.equipmentType,
+        muscleGroup: newExercise.muscleGroup,
+      });
+      toast.success('Exercise created successfully!');
+      setIsCreateDialogOpen(false);
+      setNewExercise({ name: '', equipmentType: '', muscleGroup: '' });
+    } catch (error) {
+      toast.error('Failed to create exercise');
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -56,21 +107,101 @@ export default function ExerciseLibrary() {
         <div>
           <h1 className="font-display text-3xl font-bold tracking-tight">Exercise Library</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Browse and filter exercises by equipment and muscle group
+            Browse and manage exercises by equipment and muscle group
           </p>
         </div>
-        {exercises && exercises.length === 0 && (
-          <Button onClick={handleSeedExercises} disabled={seedMutation.isPending}>
-            {seedMutation.isPending ? (
-              <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Seeding...
-              </>
-            ) : (
-              'Seed Exercises'
-            )}
-          </Button>
-        )}
+        <div className="flex gap-2">
+          {exercises && exercises.length === 0 && (
+            <Button onClick={handleSeedExercises} disabled={seedMutation.isPending}>
+              {seedMutation.isPending ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Seeding...
+                </>
+              ) : (
+                'Seed Exercises'
+              )}
+            </Button>
+          )}
+          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+            <DialogTrigger asChild>
+              <Button>
+                <Plus className="mr-2 h-4 w-4" />
+                Add Exercise
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Create New Exercise</DialogTitle>
+                <DialogDescription>
+                  Add a new exercise to your library. Fill in all the details below.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Exercise Name</Label>
+                  <Input
+                    id="name"
+                    placeholder="e.g., Bench Press"
+                    value={newExercise.name}
+                    onChange={(e) => setNewExercise({ ...newExercise, name: e.target.value })}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="equipment">Equipment Type</Label>
+                  <Select
+                    value={newExercise.equipmentType}
+                    onValueChange={(value) => setNewExercise({ ...newExercise, equipmentType: value })}
+                  >
+                    <SelectTrigger id="equipment">
+                      <SelectValue placeholder="Select equipment" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {EQUIPMENT_TYPES.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="muscle">Muscle Group</Label>
+                  <Select
+                    value={newExercise.muscleGroup}
+                    onValueChange={(value) => setNewExercise({ ...newExercise, muscleGroup: value })}
+                  >
+                    <SelectTrigger id="muscle">
+                      <SelectValue placeholder="Select muscle group" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {MUSCLE_GROUPS.map((group) => (
+                        <SelectItem key={group} value={group}>
+                          {group.charAt(0).toUpperCase() + group.slice(1)}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button onClick={handleCreateExercise} disabled={createMutation.isPending}>
+                  {createMutation.isPending ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Creating...
+                    </>
+                  ) : (
+                    'Create Exercise'
+                  )}
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 sm:flex-row sm:items-center">
@@ -136,7 +267,7 @@ export default function ExerciseLibrary() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {filteredExercises.map((exercise, index) => (
-              <ExerciseCard key={`${exercise.name}-${index}`} exercise={exercise} />
+              <ExerciseCard key={`${exercise.name}-${index}`} exercise={exercise} exerciseId={BigInt(index)} />
             ))}
           </div>
         </>

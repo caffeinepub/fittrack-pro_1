@@ -1,12 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Update the UI color scheme to use a black and red theme.
+**Goal:** Add a home page with navigation and enable full CRUD operations for the exercise library, plus expand muscle group and equipment type options.
 
 **Planned changes:**
-- Replace current color palette with black backgrounds and red accent colors in frontend/index.css
-- Update Tailwind CSS configuration to reflect black and red color scheme
-- Ensure text contrast meets accessibility standards on black backgrounds
-- Apply red accent colors to interactive elements (buttons, links, badges)
+- Create a home page at "/" with navigation to Exercise Library, Workouts, Log Weight, and Progress
+- Add create, edit, and delete functionality for exercises in the exercise library
+- Add "Full Body" as a muscle group option
+- Add Treadmill, Assault Bike, Bike, and Stairmaster as equipment type options
 
-**User-visible outcome:** The application will display with a black and red color scheme throughout the interface.
+**User-visible outcome:** Users can navigate from a central home page to all major sections, and can fully manage their exercise library by adding new exercises, editing existing ones, and deleting unwanted exercises. Additional muscle group and equipment options are available for exercise categorization.
