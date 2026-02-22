@@ -1,12 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add a home page with navigation and enable full CRUD operations for the exercise library, plus expand muscle group and equipment type options.
+**Goal:** Capitalize muscle group display text throughout the application UI.
 
 **Planned changes:**
-- Create a home page at "/" with navigation to Exercise Library, Workouts, Log Weight, and Progress
-- Add create, edit, and delete functionality for exercises in the exercise library
-- Add "Full Body" as a muscle group option
-- Add Treadmill, Assault Bike, Bike, and Stairmaster as equipment type options
+- Transform muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back')
+- Apply capitalization in ExerciseCard component badges
+- Apply capitalization in ExerciseLibrary filter buttons
+- Apply capitalization in exercise creation and edit forms
+- Keep backend storage format unchanged (lowercase)
 
-**User-visible outcome:** Users can navigate from a central home page to all major sections, and can fully manage their exercise library by adding new exercises, editing existing ones, and deleting unwanted exercises. Additional muscle group and equipment options are available for exercise categorization.
+**User-visible outcome:** All muscle group text displays with proper capitalization throughout the application while maintaining consistent data storage.

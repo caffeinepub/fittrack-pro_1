@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Loader2, Filter, Plus } from 'lucide-react';
 import { toast } from 'sonner';
+import { capitalizeText } from '../utils/formatting';
 import type { Exercise } from '../backend';
 
 const EQUIPMENT_TYPES = [
@@ -177,7 +178,7 @@ export default function ExerciseLibrary() {
                     <SelectContent>
                       {MUSCLE_GROUPS.map((group) => (
                         <SelectItem key={group} value={group}>
-                          {group.charAt(0).toUpperCase() + group.slice(1)}
+                          {capitalizeText(group)}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -232,45 +233,41 @@ export default function ExerciseLibrary() {
               <SelectItem value="all">All Muscles</SelectItem>
               {MUSCLE_GROUPS.map((group) => (
                 <SelectItem key={group} value={group}>
-                  {group.charAt(0).toUpperCase() + group.slice(1)}
+                  {capitalizeText(group)}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
-
-          {(equipmentFilter !== 'all' || muscleFilter !== 'all') && (
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => {
-                setEquipmentFilter('all');
-                setMuscleFilter('all');
-              }}
-            >
-              Clear Filters
-            </Button>
-          )}
         </div>
+        {(equipmentFilter !== 'all' || muscleFilter !== 'all') && (
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              setEquipmentFilter('all');
+              setMuscleFilter('all');
+            }}
+          >
+            Clear Filters
+          </Button>
+        )}
       </div>
 
       {filteredExercises.length === 0 ? (
-        <div className="flex min-h-[40vh] items-center justify-center rounded-lg border border-dashed border-border p-8">
-          <div className="text-center">
-            <p className="text-lg font-medium text-muted-foreground">No exercises found</p>
-            <p className="mt-1 text-sm text-muted-foreground">Try adjusting your filters</p>
-          </div>
+        <div className="flex min-h-[40vh] flex-col items-center justify-center rounded-lg border border-dashed border-border p-8 text-center">
+          <p className="text-lg font-medium text-muted-foreground">No exercises found</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            {exercises && exercises.length === 0
+              ? 'Get started by seeding the exercise library or adding your first exercise.'
+              : 'Try adjusting your filters or add a new exercise.'}
+          </p>
         </div>
       ) : (
-        <>
-          <div className="text-sm text-muted-foreground">
-            Showing {filteredExercises.length} exercise{filteredExercises.length !== 1 ? 's' : ''}
-          </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredExercises.map((exercise, index) => (
-              <ExerciseCard key={`${exercise.name}-${index}`} exercise={exercise} exerciseId={BigInt(index)} />
-            ))}
-          </div>
-        </>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredExercises.map((exercise, index) => (
+            <ExerciseCard key={index} exercise={exercise} exerciseId={BigInt(index)} />
+          ))}
+        </div>
       )}
     </div>
   );

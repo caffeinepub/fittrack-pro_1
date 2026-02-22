@@ -5,8 +5,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
 import { Loader2, Plus, CheckCircle2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { capitalizeText } from '../utils/formatting';
 import type { Exercise } from '../backend';
 
 export default function LogWeight() {
@@ -55,6 +57,8 @@ export default function LogWeight() {
     }
   };
 
+  const selectedExerciseData = selectedExercise ? exercises?.[parseInt(selectedExercise)] : null;
+
   if (isLoading) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center">
@@ -86,11 +90,26 @@ export default function LogWeight() {
                 <SelectContent>
                   {exercises?.map((exercise, index) => (
                     <SelectItem key={index} value={index.toString()}>
-                      {exercise.name}
+                      <div className="flex items-center gap-2">
+                        <span>{exercise.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          • {capitalizeText(exercise.muscleGroup)}
+                        </span>
+                      </div>
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
+              {selectedExerciseData && (
+                <div className="flex gap-2 pt-1">
+                  <Badge variant="outline" className="text-xs">
+                    {selectedExerciseData.equipmentType}
+                  </Badge>
+                  <Badge variant="outline" className="text-xs">
+                    {capitalizeText(selectedExerciseData.muscleGroup)}
+                  </Badge>
+                </div>
+              )}
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3">

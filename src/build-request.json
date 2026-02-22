@@ -1,129 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Add home page and exercise library management",
-  "projectName": "FitTrack Pro",
+  "title": "Capitalize muscle group display text",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Create a home page as the landing route (\"/\") with navigation to the main sections: Exercise Library, Workouts, Log Weight, and Progress",
+      "text": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-6"
         ],
         "quotes": [
-          "add a home page"
+          "make it so the \"muscle group\" is always capitalized"
         ]
       },
       "acceptanceCriteria": [
-        "Home page is accessible at the root route \"/\"",
-        "Navigation to Exercise Library, Workouts, Log Weight, and Progress sections is present",
-        "Page follows the existing dark theme styling with red accents"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Add functionality to create new exercises in the exercise library with fields for name, equipment type, and muscle group",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "allow me to edit, add, and delete exercises to the exercise library"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User can add a new exercise through a form with name, equipment, and muscle group inputs",
-        "New exercise is persisted in the backend",
-        "Exercise library updates to show the new exercise immediately after creation"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Add functionality to edit existing exercises in the exercise library, allowing updates to name, equipment type, and muscle group",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "allow me to edit, add, and delete exercises to the exercise library"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User can edit an existing exercise's details",
-        "Changes are persisted in the backend",
-        "Exercise library reflects the updated information immediately"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Add functionality to delete exercises from the exercise library",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "allow me to edit, add, and delete exercises to the exercise library"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User can delete an exercise from the library",
-        "Deletion is persisted in the backend",
-        "Exercise is removed from the library view immediately",
-        "Confirmation prompt is shown before deletion"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Add 'Full Body' as a valid muscle group option in the backend MuscleGroup type and include it in all muscle group selections",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Add full body to muscle group"
-        ]
-      },
-      "acceptanceCriteria": [
-        "MuscleGroup type includes 'Full Body' as a valid option",
-        "Full Body appears in muscle group filters and dropdowns",
-        "Exercises can be assigned to the Full Body muscle group"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Add Treadmill, Assault Bike, Bike, and Stairmaster as valid equipment options in the backend EquipmentType and include them in all equipment selections",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-6"
-        ],
-        "quotes": [
-          "Add treadmill, assault bike, bike and Stairmaster to equipment"
-        ]
-      },
-      "acceptanceCriteria": [
-        "EquipmentType includes Treadmill, Assault Bike, Bike, and Stairmaster as valid options",
-        "New equipment types appear in equipment filters and dropdowns",
-        "Exercises can be assigned to the new equipment types"
+        "All muscle group text displays with the first letter capitalized throughout the application",
+        "Capitalization is applied consistently in ExerciseCard component badges",
+        "Capitalization is applied in ExerciseLibrary page filter buttons",
+        "Capitalization is applied in exercise creation and edit dialogs",
+        "Backend data storage format remains unchanged (lowercase)",
+        "Transformation is applied at display time only"
       ]
     }
   ],
   "constraints": [
-    "Maintain single-actor architecture in backend/main.mo",
-    "Follow existing dark theme with red accent colors",
-    "Do not modify immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui"
+    "Do not modify the backend data schema or storage format for muscle groups",
+    "Preserve existing muscle group validation logic in backend"
   ],
   "nonGoals": [
-    "Changing the overall application structure or routing setup beyond adding the home page",
-    "Modifying the weight logging or progress tracking features",
-    "Adding user authentication or multi-user support",
-    "Changing the workout creation and management features"
+    "Changing the backend muscle group data format",
+    "Adding new muscle group options",
+    "Modifying equipment type capitalization"
   ],
   "imageRequirements": {
     "required": [],

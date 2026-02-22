@@ -4,12 +4,13 @@
   "frontend/src/App.tsx": "Main application component with TanStack Router setup, dark mode theme provider, and routes including the new home page at root path.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including new create, update, and delete exercise mutations with proper cache invalidation.",
   "frontend/src/components/Navigation.tsx": "Sticky header navigation component with app branding and links to Home, Exercises, Workouts, Log, and Progress pages with active state highlighting.",
-  "frontend/src/components/ExerciseCard.tsx": "Exercise card component with edit and delete functionality, displaying exercise details with color-coded badges for equipment and muscle groups including new types.",
-  "frontend/src/pages/ExerciseLibrary.tsx": "Exercise library page with filtering, create exercise dialog, and grid display of exercises with updated equipment types and muscle groups.",
-  "frontend/src/pages/LogWeight.tsx": "Weight logging page with form to select exercise and input weight, reps, and sets with success feedback and form reset.",
+  "frontend/src/components/ExerciseCard.tsx": "Exercise card component with edit and delete functionality, displaying exercise details with color-coded badges for equipment and muscle groups (now capitalized) including new types.",
+  "frontend/src/pages/ExerciseLibrary.tsx": "Exercise library page with filtering, create exercise dialog, and grid display of exercises with capitalized muscle group text in filters and dialogs.",
+  "frontend/src/pages/LogWeight.tsx": "Weight logging page with form to select exercise and input weight, reps, and sets with capitalized muscle group display in dropdown and badges.",
   "frontend/src/pages/WeightProgress.tsx": "Progress tracking page showing historical weight entries for selected exercise with trend indicators (up/down arrows) comparing consecutive entries.",
   "frontend/src/pages/WorkoutsList.tsx": "Workouts list page with empty state and button to create new workouts.",
   "frontend/src/pages/WorkoutDetail.tsx": "Workout detail page displaying workout name and exercise count with back navigation.",
-  "frontend/src/pages/WorkoutForm.tsx": "Workout creation and editing form with name input, searchable exercise selection, and visual feedback for selected exercises.",
-  "frontend/src/pages/Home.tsx": "Home page component with hero section, feature cards linking to main app sections, and footer with attribution."
+  "frontend/src/pages/WorkoutForm.tsx": "Workout creation and editing form with name input, searchable exercise selection showing capitalized muscle groups, and visual feedback for selected exercises.",
+  "frontend/src/pages/Home.tsx": "Home page component with hero section, feature cards linking to main app sections, and footer with attribution.",
+  "frontend/src/utils/formatting.ts": "Utility function to capitalize the first letter of each word in a string, used for consistent muscle group display formatting throughout the application."
 }

@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Pencil, Trash2, Loader2 } from 'lucide-react';
 import { useUpdateExercise, useDeleteExercise } from '../hooks/useQueries';
 import { toast } from 'sonner';
+import { capitalizeText } from '../utils/formatting';
 import type { Exercise } from '../backend';
 
 interface ExerciseCardProps {
@@ -148,7 +149,7 @@ export default function ExerciseCard({ exercise, exerciseId, onClick }: Exercise
               {exercise.equipmentType}
             </Badge>
             <Badge variant="outline" className={muscleColors[exercise.muscleGroup] || 'bg-muted'}>
-              {exercise.muscleGroup}
+              {capitalizeText(exercise.muscleGroup)}
             </Badge>
           </div>
         </CardContent>
@@ -202,7 +203,7 @@ export default function ExerciseCard({ exercise, exerciseId, onClick }: Exercise
                 <SelectContent>
                   {MUSCLE_GROUPS.map((group) => (
                     <SelectItem key={group} value={group}>
-                      {group.charAt(0).toUpperCase() + group.slice(1)}
+                      {capitalizeText(group)}
                     </SelectItem>
                   ))}
                 </SelectContent>

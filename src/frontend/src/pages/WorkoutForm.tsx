@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Loader2, ArrowLeft, Plus, X, Search } from 'lucide-react';
 import { toast } from 'sonner';
+import { capitalizeText } from '../utils/formatting';
 import type { Exercise } from '../backend';
 
 export default function WorkoutForm() {
@@ -187,7 +188,7 @@ export default function WorkoutForm() {
                         <div className="mt-1 flex gap-2 text-xs text-muted-foreground">
                           <span>{exercise.equipmentType}</span>
                           <span>•</span>
-                          <span>{exercise.muscleGroup}</span>
+                          <span>{capitalizeText(exercise.muscleGroup)}</span>
                         </div>
                       </div>
                       {isSelected && (

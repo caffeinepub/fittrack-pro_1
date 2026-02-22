@@ -1,95 +1,44 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add home page and exercise library management",
+  "title": "Capitalize muscle group display text",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Create a home page as the landing route with navigation to main sections",
+      "summary": "Transform all muscle group text to display with capitalized first letters throughout the UI while keeping backend data format unchanged",
       "acceptanceCriteria": [
-        "Home page is accessible at the root route \"/\"",
-        "Navigation to Exercise Library, Workouts, Log Weight, and Progress sections is present",
-        "Page follows the existing dark theme styling with red accents"
+        "All muscle group text displays with the first letter capitalized throughout the application",
+        "Capitalization is applied consistently in ExerciseCard component badges",
+        "Capitalization is applied in ExerciseLibrary page filter buttons",
+        "Capitalization is applied in exercise creation and edit dialogs",
+        "Backend data storage format remains unchanged (lowercase)",
+        "Transformation is applied at display time only"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/Home.tsx",
+          "path": "frontend/src/utils/formatting.ts",
           "operation": "create",
-          "description": "Create a home page component with hero section and navigation cards to Exercise Library, Workouts, Log Weight, and Progress sections. Use existing dark theme with red accent colors from index.css. Include app branding and brief description of FitTrack Pro features."
+          "description": "Create a utility function to capitalize the first letter of muscle group strings for consistent display transformation across the application"
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/ExerciseCard.tsx",
           "operation": "modify",
-          "description": "Register the Home page as the root route (\"/\") in the TanStack Router configuration. Add route definition before or alongside existing routes for exercises, workouts, logging, and progress pages."
-        },
-        {
-          "path": "frontend/src/components/Navigation.tsx",
-          "operation": "modify",
-          "description": "Add a link to the Home page in the navigation header. Ensure the home link has proper active state styling consistent with other navigation links."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Add functionality to create new exercises in the exercise library",
-      "acceptanceCriteria": [
-        "User can add a new exercise through a form with name, equipment, and muscle group inputs",
-        "New exercise is persisted in the backend",
-        "Exercise library updates to show the new exercise immediately after creation"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Add a useCreateExerciseMutation hook that calls the backend createExercise method with name, equipmentType, and muscleGroup parameters. Include automatic query invalidation to refresh the exercise list after successful creation."
+          "description": "Import and apply the capitalization utility to muscle group text displayed in the badge component"
         },
         {
           "path": "frontend/src/pages/ExerciseLibrary.tsx",
           "operation": "modify",
-          "description": "Add a button to open a create exercise dialog/form. Include form fields for exercise name (text input), equipment type (dropdown), and muscle group (dropdown). Wire the form submission to the useCreateExerciseMutation hook. Show success toast notification after creation. Ensure the exercise list automatically refreshes to display the newly created exercise."
-        }
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "summary": "Add functionality to edit existing exercises in the exercise library",
-      "acceptanceCriteria": [
-        "User can edit an existing exercise's details",
-        "Changes are persisted in the backend",
-        "Exercise library reflects the updated information immediately"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Add a useUpdateExerciseMutation hook that calls the backend updateExercise method with id, name, equipmentType, and muscleGroup parameters. Include automatic query invalidation to refresh the exercise list after successful update."
+          "description": "Import and apply the capitalization utility to muscle group filter button labels and muscle group text in the create/edit exercise dialogs"
         },
         {
-          "path": "frontend/src/components/ExerciseCard.tsx",
+          "path": "frontend/src/pages/WorkoutForm.tsx",
           "operation": "modify",
-          "description": "Add an edit button to each ExerciseCard that opens an edit dialog/form pre-populated with the exercise's current details. Include form fields for name, equipment type, and muscle group. Wire the form submission to the useUpdateExerciseMutation hook. Show success toast notification after update."
-        }
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "summary": "Add functionality to delete exercises from the exercise library",
-      "acceptanceCriteria": [
-        "User can delete an exercise from the library",
-        "Deletion is persisted in the backend",
-        "Exercise is removed from the library view immediately",
-        "Confirmation prompt is shown before deletion"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/hooks/useQueries.ts",
-          "operation": "modify",
-          "description": "Add a useDeleteExerciseMutation hook that calls the backend deleteExercise method with the exercise id parameter. Include automatic query invalidation to refresh the exercise list after successful deletion."
+          "description": "Import and apply the capitalization utility to any muscle group text displayed in the exercise selection list"
         },
         {
-          "path": "frontend/src/components/ExerciseCard.tsx",
+          "path": "frontend/src/pages/LogWeight.tsx",
           "operation": "modify",
-          "description": "Add a delete button to each ExerciseCard that triggers a confirmation dialog before deletion. Wire the confirmation action to the useDeleteExerciseMutation hook. Show success toast notification after deletion. Ensure the exercise is removed from the library view immediately after successful deletion."
+          "description": "Import and apply the capitalization utility to any muscle group text displayed in the exercise dropdown selection"
         }
       ]
     }

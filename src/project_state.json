@@ -1,44 +1,16 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Fitness exercise library application with exercise management capabilities",
-  "architectural_notes": [
-    "Exercise library with CRUD operations for exercises",
-    "Muscle groups include: full body (and others)",
-    "Equipment types include: treadmill, assault bike, bike, Stairmaster"
-  ],
+  "summary": "Workout tracker application with home page and exercise library management",
+  "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-create-a-home-page-as-the-landing-route-with-navigation-to-the-main-sections-exercise-library-workouts-log-weight-and-progress",
-      "title": "Create a home page as the landing route (\"/\") with navigation to the main sections: Exercise Library, Workouts, Log Weight, and Progress",
+      "id": "feature-transform-all-muscle-group-text-to-display-with-capitalized-first-letters-e-g-chest-chest-back-back-legs-legs-wherever-muscle-groups-are-shown-in-the-ui-including-the-exercisecard-badges-exerciselibrary-filter-buttons-and-exercise-creation-edit-forms",
+      "title": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
       "reqIds": [
         "REQ-1"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-functionality-to-create-new-exercises-in-the-exercise-library-with-fields-for-name-equipment-type-and-muscle-group",
-      "title": "Add functionality to create new exercises in the exercise library with fields for name, equipment type, and muscle group",
-      "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-functionality-to-edit-existing-exercises-in-the-exercise-library-allowing-updates-to-name-equipment-type-and-muscle-group",
-      "title": "Add functionality to edit existing exercises in the exercise library, allowing updates to name, equipment type, and muscle group",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-add-functionality-to-delete-exercises-from-the-exercise-library",
-      "title": "Add functionality to delete exercises from the exercise library",
-      "reqIds": [
-        "REQ-4"
       ],
       "version": 1
     }
@@ -46,46 +18,12 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add home page",
+      "summary": "Capitalize muscle group text display",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Enable editing, adding, and deleting exercises in exercise library",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-3",
-      "summary": "Add 'full body' to muscle group options",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-4",
-      "summary": "Add treadmill, assault bike, bike, and Stairmaster to equipment options",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "Add 'Full Body' as a valid muscle group option in the backend MuscleGroup type and include it in all muscle group selections",
-      "reqIds": [
-        "REQ-5"
-      ],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Add Treadmill, Assault Bike, Bike, and Stairmaster as valid equipment options in the backend EquipmentType and include them in all equipment selections",
-      "reqIds": [
-        "REQ-6"
-      ],
       "status": "pending"
     }
   ],
-  "projectName": "FitTrack Pro",
+  "projectName": "Capitalize muscle group display text",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

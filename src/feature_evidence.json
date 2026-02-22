@@ -2,12 +2,14 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-home-page-as-the-landing-route-with-navigation-to-the-main-sections-exercise-library-workouts-log-weight-and-progress",
-      "featureTitle": "Create a home page as the landing route (\"/\") with navigation to the main sections: Exercise Library, Workouts, Log Weight, and Progress",
+      "featureId": "feature-transform-all-muscle-group-text-to-display-with-capitalized-first-letters-e-g-chest-chest-back-back-legs-legs-wherever-muscle-groups-are-shown-in-the-ui-including-the-exercisecard-badges-exerciselibrary-filter-buttons-and-exercise-creation-edit-forms",
+      "featureTitle": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/Navigation.tsx",
-        "frontend/src/pages/Home.tsx"
+        "frontend/src/components/ExerciseCard.tsx",
+        "frontend/src/pages/ExerciseLibrary.tsx",
+        "frontend/src/pages/LogWeight.tsx",
+        "frontend/src/pages/WorkoutForm.tsx",
+        "frontend/src/utils/formatting.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -18,63 +20,6 @@
       ],
       "testIds": [
         "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-functionality-to-create-new-exercises-in-the-exercise-library-with-fields-for-name-equipment-type-and-muscle-group",
-      "featureTitle": "Add functionality to create new exercises in the exercise library with fields for name, equipment type, and muscle group",
-      "files": [
-        "frontend/src/hooks/useQueries.ts",
-        "frontend/src/pages/ExerciseLibrary.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-functionality-to-edit-existing-exercises-in-the-exercise-library-allowing-updates-to-name-equipment-type-and-muscle-group",
-      "featureTitle": "Add functionality to edit existing exercises in the exercise library, allowing updates to name, equipment type, and muscle group",
-      "files": [
-        "frontend/src/components/ExerciseCard.tsx",
-        "frontend/src/hooks/useQueries.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-functionality-to-delete-exercises-from-the-exercise-library",
-      "featureTitle": "Add functionality to delete exercises from the exercise library",
-      "files": [
-        "frontend/src/components/ExerciseCard.tsx",
-        "frontend/src/hooks/useQueries.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
       ],
       "confidence": "high"
     }
