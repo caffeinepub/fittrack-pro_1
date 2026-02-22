@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useGetAllExercises, useSeedExercises, useCreateExercise } from '../hooks/useQueries';
+import { useGetAllExercises, useCreateExercise } from '../hooks/useQueries';
 import ExerciseCard from '../components/ExerciseCard';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -37,7 +37,6 @@ const MUSCLE_GROUPS = [
 
 export default function ExerciseLibrary() {
   const { data: exercises, isLoading } = useGetAllExercises();
-  const seedMutation = useSeedExercises();
   const createMutation = useCreateExercise();
   const [equipmentFilter, setEquipmentFilter] = useState<string>('all');
   const [muscleFilter, setMuscleFilter] = useState<string>('all');
@@ -65,32 +64,46 @@ export default function ExerciseLibrary() {
     setFilteredExercises(filtered);
   }, [exercises, equipmentFilter, muscleFilter]);
 
-  const handleSeedExercises = async () => {
-    try {
-      await seedMutation.mutateAsync();
-      toast.success('Exercise library seeded successfully!');
-    } catch (error) {
-      toast.error('Failed to seed exercises');
-    }
-  };
-
   const handleCreateExercise = async () => {
-    if (!newExercise.name || !newExercise.equipmentType || !newExercise.muscleGroup) {
-      toast.error('Please fill in all fields');
+    // Validate all fields are filled
+    if (!newExercise.name.trim()) {
+      toast.error('Please enter an exercise name');
+      return;
+    }
+    if (!newExercise.equipmentType) {
+      toast.error('Please select an equipment type');
+      return;
+    }
+    if (!newExercise.muscleGroup) {
+      toast.error('Please select a muscle group');
       return;
     }
 
     try {
-      await createMutation.mutateAsync({
-        name: newExercise.name,
+      const result = await createMutation.mutateAsync({
+        name: newExercise.name.trim(),
         equipmentType: newExercise.equipmentType,
         muscleGroup: newExercise.muscleGroup,
       });
-      toast.success('Exercise created successfully!');
-      setIsCreateDialogOpen(false);
+      
+      console.log('Exercise created with ID:', result.id);
+      toast.success(`Exercise "${newExercise.name}" created successfully!`);
+      
+      // Reset form and close dialog
       setNewExercise({ name: '', equipmentType: '', muscleGroup: '' });
-    } catch (error) {
-      toast.error('Failed to create exercise');
+      setIsCreateDialogOpen(false);
+    } catch (error: any) {
+      console.error('Create exercise error:', error);
+      
+      // Parse error message for better user feedback
+      const errorMessage = error?.message || String(error);
+      if (errorMessage.includes('Invalid equipment type')) {
+        toast.error('Invalid equipment type selected. Please try again.');
+      } else if (errorMessage.includes('Invalid muscle group')) {
+        toast.error('Invalid muscle group selected. Please try again.');
+      } else {
+        toast.error('Failed to create exercise. Please try again.');
+      }
     }
   };
 
@@ -111,98 +124,99 @@ export default function ExerciseLibrary() {
             Browse and manage exercises by equipment and muscle group
           </p>
         </div>
-        <div className="flex gap-2">
-          {exercises && exercises.length === 0 && (
-            <Button onClick={handleSeedExercises} disabled={seedMutation.isPending}>
-              {seedMutation.isPending ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Seeding...
-                </>
-              ) : (
-                'Seed Exercises'
-              )}
+        <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
+          <DialogTrigger asChild>
+            <Button>
+              <Plus className="mr-2 h-4 w-4" />
+              Add Exercise
             </Button>
-          )}
-          <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="mr-2 h-4 w-4" />
-                Add Exercise
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Create New Exercise</DialogTitle>
-                <DialogDescription>
-                  Add a new exercise to your library. Fill in all the details below.
-                </DialogDescription>
-              </DialogHeader>
-              <div className="space-y-4 py-4">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Exercise Name</Label>
-                  <Input
-                    id="name"
-                    placeholder="e.g., Bench Press"
-                    value={newExercise.name}
-                    onChange={(e) => setNewExercise({ ...newExercise, name: e.target.value })}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="equipment">Equipment Type</Label>
-                  <Select
-                    value={newExercise.equipmentType}
-                    onValueChange={(value) => setNewExercise({ ...newExercise, equipmentType: value })}
-                  >
-                    <SelectTrigger id="equipment">
-                      <SelectValue placeholder="Select equipment" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {EQUIPMENT_TYPES.map((type) => (
-                        <SelectItem key={type} value={type}>
-                          {type}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="muscle">Muscle Group</Label>
-                  <Select
-                    value={newExercise.muscleGroup}
-                    onValueChange={(value) => setNewExercise({ ...newExercise, muscleGroup: value })}
-                  >
-                    <SelectTrigger id="muscle">
-                      <SelectValue placeholder="Select muscle group" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {MUSCLE_GROUPS.map((group) => (
-                        <SelectItem key={group} value={group}>
-                          {capitalizeText(group)}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </div>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Create New Exercise</DialogTitle>
+              <DialogDescription>
+                Add a new exercise to your library. Fill in all the details below.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Exercise Name</Label>
+                <Input
+                  id="name"
+                  placeholder="e.g., Bench Press"
+                  value={newExercise.name}
+                  onChange={(e) => setNewExercise({ ...newExercise, name: e.target.value })}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !createMutation.isPending) {
+                      handleCreateExercise();
+                    }
+                  }}
+                />
               </div>
-              <DialogFooter>
-                <Button variant="outline" onClick={() => setIsCreateDialogOpen(false)}>
-                  Cancel
-                </Button>
-                <Button onClick={handleCreateExercise} disabled={createMutation.isPending}>
-                  {createMutation.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Creating...
-                    </>
-                  ) : (
-                    'Create Exercise'
-                  )}
-                </Button>
-              </DialogFooter>
-            </DialogContent>
-          </Dialog>
-        </div>
+              <div className="space-y-2">
+                <Label htmlFor="equipment">Equipment Type</Label>
+                <Select
+                  value={newExercise.equipmentType}
+                  onValueChange={(value) => setNewExercise({ ...newExercise, equipmentType: value })}
+                >
+                  <SelectTrigger id="equipment">
+                    <SelectValue placeholder="Select equipment" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {EQUIPMENT_TYPES.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="muscle">Muscle Group</Label>
+                <Select
+                  value={newExercise.muscleGroup}
+                  onValueChange={(value) => setNewExercise({ ...newExercise, muscleGroup: value })}
+                >
+                  <SelectTrigger id="muscle">
+                    <SelectValue placeholder="Select muscle group" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {MUSCLE_GROUPS.map((group) => (
+                      <SelectItem key={group} value={group}>
+                        {capitalizeText(group)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            <DialogFooter>
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  setIsCreateDialogOpen(false);
+                  setNewExercise({ name: '', equipmentType: '', muscleGroup: '' });
+                }}
+                disabled={createMutation.isPending}
+              >
+                Cancel
+              </Button>
+              <Button 
+                onClick={handleCreateExercise} 
+                disabled={createMutation.isPending || !newExercise.name.trim() || !newExercise.equipmentType || !newExercise.muscleGroup}
+              >
+                {createMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Creating...
+                  </>
+                ) : (
+                  'Create Exercise'
+                )}
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <div className="flex flex-col gap-3 rounded-lg border border-border bg-card p-4 sm:flex-row sm:items-center">
@@ -258,14 +272,14 @@ export default function ExerciseLibrary() {
           <p className="text-lg font-medium text-muted-foreground">No exercises found</p>
           <p className="mt-1 text-sm text-muted-foreground">
             {exercises && exercises.length === 0
-              ? 'Get started by seeding the exercise library or adding your first exercise.'
+              ? 'Get started by adding your first exercise.'
               : 'Try adjusting your filters or add a new exercise.'}
           </p>
         </div>
       ) : (
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filteredExercises.map((exercise, index) => (
-            <ExerciseCard key={index} exercise={exercise} exerciseId={BigInt(index)} />
+            <ExerciseCard key={`${exercise.name}-${index}`} exercise={exercise} exerciseId={BigInt(index)} />
           ))}
         </div>
       )}

@@ -2,14 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-transform-all-muscle-group-text-to-display-with-capitalized-first-letters-e-g-chest-chest-back-back-legs-legs-wherever-muscle-groups-are-shown-in-the-ui-including-the-exercisecard-badges-exerciselibrary-filter-buttons-and-exercise-creation-edit-forms",
-      "featureTitle": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
+      "featureId": "feature-ensure-the-existing-seed-functionality-in-the-exerciselibrary-page-can-populate-these-30-exercises-into-the-library-when-triggered",
+      "featureTitle": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
       "files": [
-        "frontend/src/components/ExerciseCard.tsx",
-        "frontend/src/pages/ExerciseLibrary.tsx",
-        "frontend/src/pages/LogWeight.tsx",
-        "frontend/src/pages/WorkoutForm.tsx",
-        "frontend/src/utils/formatting.ts"
+        "frontend/src/pages/ExerciseLibrary.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -19,7 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-1"
+        "REQ-2"
       ],
       "confidence": "high"
     }

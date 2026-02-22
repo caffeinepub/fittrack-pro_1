@@ -1,13 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Capitalize muscle group display text throughout the application UI.
+**Goal:** Pre-populate the exercise library with 30 predefined exercises covering various muscle groups and equipment types.
 
 **Planned changes:**
-- Transform muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back')
-- Apply capitalization in ExerciseCard component badges
-- Apply capitalization in ExerciseLibrary filter buttons
-- Apply capitalization in exercise creation and edit forms
-- Keep backend storage format unchanged (lowercase)
+- Add 30 exercises to the backend with specific names, equipment types (Free Weight, Machine, Dumbbell, Cable), and muscle groups (lower body, chest, back, shoulders, biceps, triceps, core)
+- Update the seed functionality in the ExerciseLibrary page to populate these 30 exercises
+- Prevent duplicate exercises when seeding multiple times
 
-**User-visible outcome:** All muscle group text displays with proper capitalization throughout the application while maintaining consistent data storage.
+**User-visible outcome:** Users can seed the exercise library with 30 predefined exercises covering all major muscle groups and equipment types, making it immediately usable for creating workouts.

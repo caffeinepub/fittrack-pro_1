@@ -1,18 +1,44 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-22T02:52:33.612Z",
-  "summary": "The diff implements REQ-1 by creating a capitalization utility function and applying it to muscle group displays across the frontend. The implementation covers ExerciseCard badges, ExerciseLibrary filters and dialogs, LogWeight exercise selection, and WorkoutForm exercise selection. Backend data format remains unchanged (lowercase muscle groups stored in MUSCLE_GROUPS arrays).",
-  "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.95,
+  "generatedAt": "2026-02-22T03:38:39.242Z",
+  "summary": "The implementation successfully adds 30 exercises to the backend via a migration module, but deviates from the BuildRequest by removing the seed button functionality rather than ensuring it works. Several exercise names also do not match the specified names exactly.",
+  "missing_requirements": [
+    {
+      "id": "REQ-2",
+      "requirement": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
+      "reason": "The seed button was removed from ExerciseLibrary.tsx instead of being enhanced to populate the 30 exercises. The file summary explicitly states 'removed seed button as 30 exercises are now automatically populated via backend migration'.",
+      "evidence": [
+        "frontend/src/pages/ExerciseLibrary.tsx",
+        "frontend-file-summaries.txt"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "Exercise names match the provided table exactly including any special characters and capitalization",
+      "reason": "Several exercise names in migration.mo do not match the BuildRequest exactly. For example: 'Machine Fly' instead of 'Machine Fly / Machine Chest Fly', 'Cable Row' instead of 'Cable Row / Cable Back Rows'.",
+      "evidence": [
+        "backend/migration.mo"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend migration module that automatically pre-populates exercises on deployment",
+      "reason": "The BuildRequest specified using existing seed functionality in the frontend, not creating a backend migration system. This architectural change was not requested.",
+      "evidence": [
+        "backend/migration.mo",
+        "backend/main.mo"
+      ]
+    }
+  ],
+  "confidence": 0.9,
   "changed_files": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/ExerciseCard.tsx",
+    "frontend/src/hooks/useQueries.ts",
     "frontend/src/pages/ExerciseLibrary.tsx",
-    "frontend/src/pages/LogWeight.tsx",
-    "frontend/src/pages/WorkoutForm.tsx",
-    "frontend/src/utils/formatting.ts",
     "project_state.json"
   ]
 }

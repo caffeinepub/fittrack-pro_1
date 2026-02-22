@@ -53,7 +53,6 @@ export const idlService = IDL.Service({
       [IDL.Nat],
       [],
     ),
-  'seedExercises' : IDL.Func([], [], []),
   'updateExercise' : IDL.Func([IDL.Nat, IDL.Text, IDL.Text, IDL.Text], [], []),
   'updateWorkout' : IDL.Func([IDL.Nat, IDL.Text, IDL.Vec(IDL.Nat)], [], []),
 });
@@ -110,7 +109,6 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Nat],
         [],
       ),
-    'seedExercises' : IDL.Func([], [], []),
     'updateExercise' : IDL.Func(
         [IDL.Nat, IDL.Text, IDL.Text, IDL.Text],
         [],

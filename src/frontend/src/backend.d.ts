@@ -39,7 +39,6 @@ export interface backendInterface {
     getWeightProgress(exerciseId: bigint): Promise<Array<WeightEntry>>;
     getWorkout(id: bigint): Promise<Workout>;
     logWeightEntry(exerciseId: bigint, weight: bigint, reps: bigint, sets: bigint, workoutId: bigint | null): Promise<bigint>;
-    seedExercises(): Promise<void>;
     updateExercise(id: bigint, name: string, equipmentType: string, muscleGroup: string): Promise<void>;
     updateWorkout(id: bigint, name: string, exerciseIds: Array<bigint>): Promise<void>;
 }

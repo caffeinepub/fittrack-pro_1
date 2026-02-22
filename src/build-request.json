@@ -1,38 +1,51 @@
 {
   "kind": "build_request",
-  "title": "Capitalize muscle group display text",
+  "title": "Pre-populate exercise library with 30 exercises",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
-      "target": "frontend",
+      "text": "Add 30 pre-defined exercises to the backend exercise library with the following data: Alternating Single-Leg Squat (Free Weight, lower body), Machine Single-Leg Extensions (Machine, lower body), Single-Leg Hamstring Curls (Machine, lower body), Hip Adduction (Machine, lower body), Dumbbell Incline Bench Press (Dumbbell, chest), Machine Chest Press (Machine, chest), Machine Fly / Machine Chest Fly (Machine, chest), Dumbbell Chest Press (Dumbbell, chest), Machine Supported Row (Machine, back), Machine Lat Pulldown (Machine, back), Cable Row / Cable Back Rows (Cable, back), Closed-Grip Cable Lat Pulldowns (Cable, back), Machine Rear Delt Fly (Machine, shoulders), Machine Shoulder Raises (Machine, shoulders), Dumbbell Shoulder Press (Dumbbell, shoulders), Dumbbell Shoulder Raises (Dumbbell, shoulders), Cable Shoulder Face Pulls (Cable, shoulders), Preacher Bench Bicep Curls (Free Weight, biceps), Preacher Bench Hammer Curls (Free Weight, biceps), Dumbbell Incline Bicep Curls (Dumbbell, biceps), Dumbbell Hammer Curls (Dumbbell, biceps), Dumbbell Preacher Bench Hammer Curls (Dumbbell, biceps), Tricep Overhead Extension (Cable, triceps), Cable Tricep Overhead Extension (Cable, triceps), Tricep Pulldown (Cable, triceps), Reverse Grip Tricep Pulldown (Cable, triceps), Cable Tricep Pulldowns (Cable, triceps), Cable Pallof Press (Cable, core), Cable Low–High (Cable, core), Cable High–Low (Cable, core)",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-4"
         ],
         "quotes": [
-          "make it so the \"muscle group\" is always capitalized"
+          "include these exercies: | Exercise | Machine Type | Muscle Group |"
         ]
       },
       "acceptanceCriteria": [
-        "All muscle group text displays with the first letter capitalized throughout the application",
-        "Capitalization is applied consistently in ExerciseCard component badges",
-        "Capitalization is applied in ExerciseLibrary page filter buttons",
-        "Capitalization is applied in exercise creation and edit dialogs",
-        "Backend data storage format remains unchanged (lowercase)",
-        "Transformation is applied at display time only"
+        "All 30 exercises are created in the backend with correct names, equipment types, and muscle groups",
+        "Exercise names match the provided table exactly including any special characters and capitalization",
+        "Equipment types are correctly mapped (Free Weight, Machine, Dumbbell, Cable)",
+        "Muscle groups are correctly mapped (lower body, chest, back, shoulders, biceps, triceps, core)"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The seed button in ExerciseLibrary triggers creation of all 30 exercises",
+        "Exercises appear in the library after seeding with proper filtering capabilities",
+        "No duplicate exercises are created if seed is triggered multiple times"
       ]
     }
   ],
   "constraints": [
-    "Do not modify the backend data schema or storage format for muscle groups",
-    "Preserve existing muscle group validation logic in backend"
+    "Do not modify the existing exercise data model or validation logic",
+    "Maintain the existing equipment type and muscle group validation in the backend"
   ],
   "nonGoals": [
-    "Changing the backend muscle group data format",
-    "Adding new muscle group options",
-    "Modifying equipment type capitalization"
+    "Adding any exercises beyond the 30 specified in the table",
+    "Modifying the UI layout or styling of the exercise library",
+    "Creating workout templates using these exercises"
   ],
   "imageRequirements": {
     "required": [],

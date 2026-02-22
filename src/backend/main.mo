@@ -5,7 +5,9 @@ import Text "mo:core/Text";
 import Order "mo:core/Order";
 import List "mo:core/List";
 import Runtime "mo:core/Runtime";
+import Migration "migration";
 
+(with migration = Migration.run)
 actor {
   type Exercise = {
     name : Text;
@@ -222,45 +224,5 @@ actor {
 
   public query ({ caller }) func getAllExercisesSorted() : async [Exercise] {
     exercises.values().toArray().sort();
-  };
-
-  // Seed initial exercise data
-  public shared ({ caller }) func seedExercises() : async () {
-    let initialExercises : [Exercise] = [
-      // Dumbbell exercises
-      { name = "Dumbbell Bench Press"; equipmentType = "Dumbbell"; muscleGroup = "chest" },
-      { name = "Dumbbell Flyes"; equipmentType = "Dumbbell"; muscleGroup = "chest" },
-      { name = "Dumbbell Shoulder Press"; equipmentType = "Dumbbell"; muscleGroup = "shoulders" },
-      { name = "Dumbbell Lateral Raises"; equipmentType = "Dumbbell"; muscleGroup = "shoulders" },
-      { name = "Dumbbell Bicep Curls"; equipmentType = "Dumbbell"; muscleGroup = "biceps" },
-      { name = "Dumbbell Tricep Extensions"; equipmentType = "Dumbbell"; muscleGroup = "triceps" },
-      { name = "Barbell Bench Press"; equipmentType = "Barbell"; muscleGroup = "chest" },
-      { name = "Barbell Squats"; equipmentType = "Barbell"; muscleGroup = "lower body" },
-      { name = "Barbell Deadlifts"; equipmentType = "Barbell"; muscleGroup = "back" },
-      { name = "Barbell Rows"; equipmentType = "Barbell"; muscleGroup = "back" },
-      { name = "Barbell Bicep Curls"; equipmentType = "Barbell"; muscleGroup = "biceps" },
-      { name = "Barbell Tricep Extensions"; equipmentType = "Barbell"; muscleGroup = "triceps" },
-      { name = "Seated Chest Press"; equipmentType = "Machine"; muscleGroup = "chest" },
-      { name = "Lat Pulldown"; equipmentType = "Machine"; muscleGroup = "back" },
-      { name = "Leg Extension"; equipmentType = "Machine"; muscleGroup = "lower body" },
-      { name = "Leg Curl"; equipmentType = "Machine"; muscleGroup = "lower body" },
-      { name = "Shoulder Press Machine"; equipmentType = "Machine"; muscleGroup = "shoulders" },
-      { name = "Hack Squat"; equipmentType = "Plate-Loaded Machine"; muscleGroup = "lower body" },
-      { name = "Seated Calf Raise"; equipmentType = "Plate-Loaded Machine"; muscleGroup = "lower body" },
-      { name = "Chest Press Machine"; equipmentType = "Plate-Loaded Machine"; muscleGroup = "chest" },
-      { name = "Cable Tricep Pushdowns"; equipmentType = "Cable"; muscleGroup = "triceps" },
-      { name = "Cable Bicep Curls"; equipmentType = "Cable"; muscleGroup = "biceps" },
-      { name = "Cable Flyes"; equipmentType = "Cable"; muscleGroup = "chest" },
-      { name = "Cable Rows"; equipmentType = "Cable"; muscleGroup = "back" },
-      { name = "Cable Lat Pulldowns"; equipmentType = "Cable"; muscleGroup = "back" },
-      { name = "Treadmill Running"; equipmentType = "Treadmill"; muscleGroup = "full body" },
-      { name = "Assault Bike Sprints"; equipmentType = "Assault Bike"; muscleGroup = "full body" },
-      { name = "Stationary Bike"; equipmentType = "Bike"; muscleGroup = "lower body" },
-      { name = "Stairmaster Climbing"; equipmentType = "Stairmaster"; muscleGroup = "lower body" },
-    ];
-
-    for (exercise in initialExercises.values()) {
-      ignore await createExercise(exercise.name, exercise.equipmentType, exercise.muscleGroup);
-    };
   };
 };

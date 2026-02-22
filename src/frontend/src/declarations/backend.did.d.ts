@@ -45,7 +45,6 @@ export interface _SERVICE {
     [bigint, bigint, bigint, bigint, [] | [bigint]],
     bigint
   >,
-  'seedExercises' : ActorMethod<[], undefined>,
   'updateExercise' : ActorMethod<[bigint, string, string, string], undefined>,
   'updateWorkout' : ActorMethod<[bigint, string, Array<bigint>], undefined>,
 }

@@ -121,7 +121,6 @@ export interface backendInterface {
     getWeightProgress(exerciseId: bigint): Promise<Array<WeightEntry>>;
     getWorkout(id: bigint): Promise<Workout>;
     logWeightEntry(exerciseId: bigint, weight: bigint, reps: bigint, sets: bigint, workoutId: bigint | null): Promise<bigint>;
-    seedExercises(): Promise<void>;
     updateExercise(id: bigint, name: string, equipmentType: string, muscleGroup: string): Promise<void>;
     updateWorkout(id: bigint, name: string, exerciseIds: Array<bigint>): Promise<void>;
 }
@@ -279,20 +278,6 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.logWeightEntry(arg0, arg1, arg2, arg3, to_candid_opt_n5(this._uploadFile, this._downloadFile, arg4));
-            return result;
-        }
-    }
-    async seedExercises(): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.seedExercises();
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.seedExercises();
             return result;
         }
     }

@@ -1,16 +1,18 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Workout tracker application with home page and exercise library management",
-  "architectural_notes": [],
+  "summary": "Fitness/workout tracking app with exercise library categorized by machine type and muscle group",
+  "architectural_notes": [
+    "Exercise data model includes: name, machine type (Free Weight, Machine, Dumbbell, Cable), and muscle group"
+  ],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-transform-all-muscle-group-text-to-display-with-capitalized-first-letters-e-g-chest-chest-back-back-legs-legs-wherever-muscle-groups-are-shown-in-the-ui-including-the-exercisecard-badges-exerciselibrary-filter-buttons-and-exercise-creation-edit-forms",
-      "title": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
+      "id": "feature-ensure-the-existing-seed-functionality-in-the-exerciselibrary-page-can-populate-these-30-exercises-into-the-library-when-triggered",
+      "title": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
       "reqIds": [
-        "REQ-1"
+        "REQ-2"
       ],
       "version": 1
     }
@@ -18,12 +20,20 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Capitalize muscle group text display",
+      "summary": "Pre-populate exercise library with 30 exercises across lower body, chest, back, shoulders, biceps, triceps, and core muscle groups",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add 30 pre-defined exercises to the backend exercise library with the following data: Alternating Single-Leg Squat (Free Weight, lower body), Machine Single-Leg Extensions (Machine, lower body), Single-Leg Hamstring Curls (Machine, lower body), Hip Adduction (Machine, lower body), Dumbbell Incline Bench Press (Dumbbell, chest), Machine Chest Press (Machine, chest), Machine Fly / Machine Chest Fly (Machine, chest), Dumbbell Chest Press (Dumbbell, chest), Machine Supported Row (Machine, back), Machine Lat Pulldown (Machine, back), Cable Row / Cable Back Rows (Cable, back), Closed-Grip Cable Lat Pulldowns (Cable, back), Machine Rear Delt Fly (Machine, shoulders), Machine Shoulder Raises (Machine, shoulders), Dumbbell Shoulder Press (Dumbbell, shoulders), Dumbbell Shoulder Raises (Dumbbell, shoulders), Cable Shoulder Face Pulls (Cable, shoulders), Preacher Bench Bicep Curls (Free Weight, biceps), Preacher Bench Hammer Curls (Free Weight, biceps), Dumbbell Incline Bicep Curls (Dumbbell, biceps), Dumbbell Hammer Curls (Dumbbell, biceps), Dumbbell Preacher Bench Hammer Curls (Dumbbell, biceps), Tricep Overhead Extension (Cable, triceps), Cable Tricep Overhead Extension (Cable, triceps), Tricep Pulldown (Cable, triceps), Reverse Grip Tricep Pulldown (Cable, triceps), Cable Tricep Pulldowns (Cable, triceps), Cable Pallof Press (Cable, core), Cable Low–High (Cable, core), Cable High–Low (Cable, core)",
+      "reqIds": [
+        "REQ-1"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Capitalize muscle group display text",
+  "projectName": "Pre-populate exercise library with 30 exercises",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

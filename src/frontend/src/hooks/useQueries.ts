@@ -2,6 +2,9 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
 import type { Exercise, Workout, WeightEntry } from '../backend';
 
+// Extended Exercise type that includes the ID for frontend use
+export type ExerciseWithId = Exercise & { id: bigint };
+
 export function useGetAllExercises() {
   const { actor, isFetching } = useActor();
 
@@ -58,10 +61,15 @@ export function useCreateExercise() {
       muscleGroup: string;
     }) => {
       if (!actor) throw new Error('Actor not initialized');
-      return actor.createExercise(name, equipmentType, muscleGroup);
+      const id = await actor.createExercise(name, equipmentType, muscleGroup);
+      return { id, name, equipmentType, muscleGroup };
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['exercises'] });
+    },
+    onError: (error) => {
+      console.error('Failed to create exercise:', error);
+      throw error;
     },
   });
 }
@@ -88,6 +96,10 @@ export function useUpdateExercise() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['exercises'] });
     },
+    onError: (error) => {
+      console.error('Failed to update exercise:', error);
+      throw error;
+    },
   });
 }
 
@@ -102,6 +114,10 @@ export function useDeleteExercise() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['exercises'] });
+    },
+    onError: (error) => {
+      console.error('Failed to delete exercise:', error);
+      throw error;
     },
   });
 }
@@ -192,20 +208,5 @@ export function useGetWeightProgress(exerciseId: bigint | null) {
       return entries.sort((a, b) => Number(b.date - a.date));
     },
     enabled: !!actor && !isFetching && exerciseId !== null,
-  });
-}
-
-export function useSeedExercises() {
-  const { actor } = useActor();
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async () => {
-      if (!actor) throw new Error('Actor not initialized');
-      return actor.seedExercises();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['exercises'] });
-    },
   });
 }

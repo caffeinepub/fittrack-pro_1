@@ -1,46 +1,48 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-22T02:52:33.614Z",
+  "generatedAt": "2026-02-22T03:38:39.245Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
+    "total": 2,
     "implemented": 1,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Transform all muscle group text to display with capitalized first letters (e.g., 'chest' → 'Chest', 'back' → 'Back', 'legs' → 'Legs') wherever muscle groups are shown in the UI, including the ExerciseCard badges, ExerciseLibrary filter buttons, and exercise creation/edit forms",
+        "summary": "Add 30 pre-defined exercises to the backend exercise library with the following data: Alternating Single-Leg Squat (Free Weight, lower body), Machine Single-Leg Extensions (Machine, lower body), Single-Leg Hamstring Curls (Machine, lower body), Hip Adduction (Machine, lower body), Dumbbell Incline Bench Press (Dumbbell, chest), Machine Chest Press (Machine, chest), Machine Fly / Machine Chest Fly (Machine, chest), Dumbbell Chest Press (Dumbbell, chest), Machine Supported Row (Machine, back), Machine Lat Pulldown (Machine, back), Cable Row / Cable Back Rows (Cable, back), Closed-Grip Cable Lat Pulldowns (Cable, back), Machine Rear Delt Fly (Machine, shoulders), Machine Shoulder Raises (Machine, shoulders), Dumbbell Shoulder Press (Dumbbell, shoulders), Dumbbell Shoulder Raises (Dumbbell, shoulders), Cable Shoulder Face Pulls (Cable, shoulders), Preacher Bench Bicep Curls (Free Weight, biceps), Preacher Bench Hammer Curls (Free Weight, biceps), Dumbbell Incline Bicep Curls (Dumbbell, biceps), Dumbbell Hammer Curls (Dumbbell, biceps), Dumbbell Preacher Bench Hammer Curls (Dumbbell, biceps), Tricep Overhead Extension (Cable, triceps), Cable Tricep Overhead Extension (Cable, triceps), Tricep Pulldown (Cable, triceps), Reverse Grip Tricep Pulldown (Cable, triceps), Cable Tricep Pulldowns (Cable, triceps), Cable Pallof Press (Cable, core), Cable Low–High (Cable, core), Cable High–Low (Cable, core)",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Ensure the existing seed functionality in the ExerciseLibrary page can populate these 30 exercises into the library when triggered",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/utils/formatting.ts",
-          "frontend/src/components/ExerciseCard.tsx",
-          "frontend/src/pages/ExerciseLibrary.tsx",
-          "frontend/src/pages/WorkoutForm.tsx",
-          "frontend/src/pages/LogWeight.tsx"
+          "frontend/src/pages/ExerciseLibrary.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/utils/formatting.ts",
-          "frontend/src/components/ExerciseCard.tsx",
-          "frontend/src/pages/ExerciseLibrary.tsx",
-          "frontend/src/pages/WorkoutForm.tsx",
-          "frontend/src/pages/LogWeight.tsx"
+          "frontend/src/pages/ExerciseLibrary.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/ExerciseCard.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useQueries.ts",
     "frontend/src/pages/ExerciseLibrary.tsx",
-    "frontend/src/pages/LogWeight.tsx",
-    "frontend/src/pages/WorkoutForm.tsx",
-    "frontend/src/utils/formatting.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

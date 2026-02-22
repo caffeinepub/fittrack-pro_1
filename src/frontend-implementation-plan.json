@@ -1,44 +1,21 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Capitalize muscle group display text",
+  "title": "Pre-populate exercise library with 30 exercises",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Transform all muscle group text to display with capitalized first letters throughout the UI while keeping backend data format unchanged",
+      "id": "REQ-2",
+      "summary": "Update seed functionality to populate 30 pre-defined exercises with correct names, equipment types, and muscle groups",
       "acceptanceCriteria": [
-        "All muscle group text displays with the first letter capitalized throughout the application",
-        "Capitalization is applied consistently in ExerciseCard component badges",
-        "Capitalization is applied in ExerciseLibrary page filter buttons",
-        "Capitalization is applied in exercise creation and edit dialogs",
-        "Backend data storage format remains unchanged (lowercase)",
-        "Transformation is applied at display time only"
+        "The seed button in ExerciseLibrary triggers creation of all 30 exercises",
+        "Exercises appear in the library after seeding with proper filtering capabilities",
+        "No duplicate exercises are created if seed is triggered multiple times"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/utils/formatting.ts",
-          "operation": "create",
-          "description": "Create a utility function to capitalize the first letter of muscle group strings for consistent display transformation across the application"
-        },
-        {
-          "path": "frontend/src/components/ExerciseCard.tsx",
-          "operation": "modify",
-          "description": "Import and apply the capitalization utility to muscle group text displayed in the badge component"
-        },
-        {
           "path": "frontend/src/pages/ExerciseLibrary.tsx",
           "operation": "modify",
-          "description": "Import and apply the capitalization utility to muscle group filter button labels and muscle group text in the create/edit exercise dialogs"
-        },
-        {
-          "path": "frontend/src/pages/WorkoutForm.tsx",
-          "operation": "modify",
-          "description": "Import and apply the capitalization utility to any muscle group text displayed in the exercise selection list"
-        },
-        {
-          "path": "frontend/src/pages/LogWeight.tsx",
-          "operation": "modify",
-          "description": "Import and apply the capitalization utility to any muscle group text displayed in the exercise dropdown selection"
+          "description": "Update the seedExercises function to replace the existing sample exercises with the 30 exercises specified in the BuildRequest. Include all exercises with their exact names (preserving capitalization and special characters), correct equipment types (Free Weight, Machine, Dumbbell, Cable), and muscle groups (lower body, chest, back, shoulders, biceps, triceps, core). Implement duplicate prevention by checking if exercises already exist before creating them."
         }
       ]
     }
