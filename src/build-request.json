@@ -1,318 +1,58 @@
 {
   "kind": "build_request",
-  "title": "Build workout tracking app with exercise filtering and weight progress",
-  "projectName": "FitTrack Pro",
+  "title": "Update UI color scheme to black and red theme",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Implement dark mode UI theme throughout the entire application with appropriate dark backgrounds, light text, and sufficient contrast for readability",
+      "id": "REQ-29",
+      "text": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme, replacing the current OKLCH color variables with black backgrounds and red accent colors for primary elements, buttons, and interactive components",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user-latest"
         ],
         "quotes": [
-          "make a workout app in dark mode"
+          "make the app black and red"
         ]
       },
       "acceptanceCriteria": [
-        "All screens use dark mode color scheme",
-        "Text and UI elements have sufficient contrast against dark backgrounds",
-        "Interactive elements are clearly visible in dark mode"
+        "Primary color scheme uses red tones instead of current colors",
+        "Background colors use true black or near-black values",
+        "Text maintains sufficient contrast for readability on black backgrounds",
+        "Interactive elements (buttons, links, badges) use red accent colors",
+        "All CSS color variables are updated to reflect black and red theme"
       ]
     },
     {
-      "id": "REQ-2",
-      "text": "Create backend data model for Exercise with fields: name (Text), equipmentType (Text: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable), muscleGroup (Text: back, chest, biceps, triceps, shoulders, core, lower body)",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "filter exercises by equipment type (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, and Cable) and muscle group (back, chest, biceps, triceps, shoulders, back, core and lower body)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Exercise type stores all required fields",
-        "Equipment types match the specified list exactly",
-        "Muscle groups match the specified list exactly"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Create backend data model for Workout with fields: name (Text), exerciseIds (array of exercise references), createdAt (timestamp)",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "allow me to create workouts"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Workout can reference multiple exercises",
-        "Workout stores creation timestamp",
-        "Workout has a name field"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Create backend data model for WeightEntry with fields: exerciseId (reference to exercise), weight (Nat), reps (Nat), sets (Nat), date (timestamp), workoutId (optional reference to workout)",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "tracks weight progress"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Weight entries link to specific exercises",
-        "Weight entries store weight, reps, and sets",
-        "Weight entries include timestamp for progress tracking",
-        "Weight entries can optionally reference a workout session"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Implement backend methods to create, read, update, and delete exercises with validation for equipment type and muscle group values",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Can create new exercises",
-        "Can retrieve exercise list",
-        "Can update existing exercises",
-        "Can delete exercises",
-        "Equipment type and muscle group values are validated against allowed lists"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Implement backend methods to create, read, update, and delete workouts",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "allow me to create workouts"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Can create new workouts with multiple exercises",
-        "Can retrieve workout list",
-        "Can update existing workouts",
-        "Can delete workouts"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Implement backend methods to log weight entries and retrieve weight progress history for a given exercise, sorted by date",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "tracks weight progress"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Can log new weight entries for exercises",
-        "Can retrieve weight history for a specific exercise",
-        "Weight history is sorted by date for progress tracking"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Implement backend query method to filter exercises by equipment type, returning exercises that match the specified equipment type",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "filter exercises by equipment type (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, and Cable)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Can filter exercises by any of the six equipment types",
-        "Returns only exercises matching the specified equipment type"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Implement backend query method to filter exercises by muscle group, returning exercises that target the specified muscle group",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "muscle group (back, chest, biceps, triceps, shoulders, back, core and lower body)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Can filter exercises by any of the seven muscle groups",
-        "Returns only exercises targeting the specified muscle group"
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "text": "Implement backend query method to return all exercises sorted alphabetically by name",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "organize alphabetically"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Exercises are returned in alphabetical order by name",
-        "Sorting is case-insensitive"
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Create exercise library page with filtering UI that allows users to filter by equipment type (dropdown with: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable) and muscle group (dropdown with: back, chest, biceps, triceps, shoulders, core, lower body), displaying filtered results alphabetically",
+      "id": "REQ-30",
+      "text": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme, ensuring all custom theme colors use appropriate black and red values that integrate with the updated CSS variables",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-user-latest"
         ],
         "quotes": [
-          "filter exercises by equipment type (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, and Cable) and muscle group (back, chest, biceps, triceps, shoulders, back, core and lower body) and organize alphabetically"
+          "make the app black and red"
         ]
       },
       "acceptanceCriteria": [
-        "Exercise library displays all exercises alphabetically by default",
-        "Equipment type filter dropdown includes all six types",
-        "Muscle group filter dropdown includes all seven groups",
-        "Filtering updates the displayed exercise list in real-time",
-        "Filtered results remain alphabetically sorted"
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "text": "Create workout creation/editing page that allows users to name a workout, search and add exercises to it, and save the complete workout",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "allow me to create workouts"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User can enter a workout name",
-        "User can search and select exercises to add",
-        "User can remove exercises from the workout",
-        "User can save the workout",
-        "User can edit existing workouts"
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "text": "Create weight logging interface where users can select an exercise, enter weight, reps, and sets, and log the entry with current date/time",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "tracks weight progress"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User can select an exercise from a list or search",
-        "User can input weight value (numeric)",
-        "User can input number of reps (numeric)",
-        "User can input number of sets (numeric)",
-        "Entry is automatically timestamped with current date/time",
-        "User receives confirmation when entry is saved"
-      ]
-    },
-    {
-      "id": "REQ-14",
-      "text": "Create weight progress view that displays historical weight entries for a selected exercise, showing date, weight, reps, and sets in chronological order with visual indication of progress trends",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "tracks weight progress"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User can select an exercise to view progress",
-        "Historical entries display date, weight, reps, and sets",
-        "Entries are sorted chronologically (most recent first)",
-        "Visual elements indicate progress trends (increasing/decreasing weight)"
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "text": "Create workouts list page that displays all saved workouts with ability to view workout details (exercises included) and start a workout session",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "allow me to create workouts"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All saved workouts are displayed",
-        "User can tap/click to view workout details",
-        "Workout details show all included exercises",
-        "User can start a workout session from the list"
-      ]
-    },
-    {
-      "id": "REQ-16",
-      "text": "Seed the backend with a comprehensive starter exercise database including common exercises across all equipment types and muscle groups",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Database includes exercises for each equipment type",
-        "Database includes exercises for each muscle group",
-        "Exercise names are realistic and commonly used in fitness",
-        "Minimum of 30 diverse exercises are seeded"
+        "Tailwind theme colors are updated to match the black and red palette",
+        "All color references in the config align with the updated CSS variables",
+        "Chart colors maintain sufficient contrast on black backgrounds"
       ]
     }
   ],
   "constraints": [
-    "Equipment types must be exactly: Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable",
-    "Muscle groups must be exactly: back, chest, biceps, triceps, shoulders, core, lower body",
-    "All UI must use dark mode color scheme",
-    "Exercises must be organized alphabetically in all views"
+    "Do not modify backend files",
+    "Do not change component structure or functionality",
+    "Maintain sufficient contrast ratios for accessibility (WCAG AA minimum)",
+    "Preserve all existing features and interactions"
   ],
   "nonGoals": [
-    "Social features or sharing workouts with other users",
-    "Video demonstrations or exercise instructions",
-    "Meal planning or nutrition tracking",
-    "Integration with wearable devices or fitness trackers",
-    "Advanced analytics or machine learning predictions",
-    "User authentication or multi-user support",
-    "Rest timer between sets",
-    "Workout scheduling or calendar features"
+    "Adding new features or components",
+    "Changing layout or component hierarchy",
+    "Modifying backend data structures",
+    "Adding color customization settings"
   ],
   "imageRequirements": {
     "required": [],

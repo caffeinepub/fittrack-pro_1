@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
-  "summary": "Dark mode workout tracking app with weight progress tracking, custom workout creation, and exercise filtering by equipment type and muscle group",
+  "projectStateVersion": 7,
+  "summary": "Dark mode workout tracking app with black and red color scheme, weight progress tracking, custom workout creation, exercise filtering by equipment type and muscle group, and full CRUD operations for exercises in the library",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
@@ -51,6 +51,86 @@
       "title": "Create workouts list page that displays all saved workouts with ability to view workout details (exercises included) and start a workout session",
       "reqIds": [
         "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-edit-button-to-each-exercisecard-component-that-opens-an-edit-form-pre-populated-with-the-exercise-s-current-name-equipment-type-and-muscle-group",
+      "title": "Add edit button to each ExerciseCard component that opens an edit form pre-populated with the exercise's current name, equipment type, and muscle group",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-exercise-edit-form-with-name-input-and-dropdowns-for-equipment-type-and-muscle-group-with-save-functionality-that-calls-the-backend-update-method-and-refreshes-the-exercise-list",
+      "title": "Implement exercise edit form with name input and dropdowns for equipment type and muscle group, with save functionality that calls the backend update method and refreshes the exercise list",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-delete-button-to-each-exercisecard-component-with-confirmation-dialog-to-prevent-accidental-deletion",
+      "title": "Add delete button to each ExerciseCard component with confirmation dialog to prevent accidental deletion",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-delete-functionality-that-calls-backend-deleteexercise-method-and-removes-the-exercise-from-the-list-with-success-feedback",
+      "title": "Implement delete functionality that calls backend deleteExercise method and removes the exercise from the list with success feedback",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-add-new-exercise-button-to-the-exercise-library-page-that-opens-a-form-to-create-a-new-exercise-with-name-input-and-dropdowns-for-equipment-type-and-muscle-group",
+      "title": "Add 'Add New Exercise' button to the Exercise Library page that opens a form to create a new exercise with name input and dropdowns for equipment type and muscle group",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-new-exercise-creation-form-that-validates-input-and-calls-backend-addexercise-method-then-refreshes-the-exercise-list-and-shows-success-feedback",
+      "title": "Implement new exercise creation form that validates input and calls backend addExercise method, then refreshes the exercise list and shows success feedback",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-equipment-type-filter-dropdown-on-exercise-library-page-to-include-the-new-cardio-equipment-options-treadmill-assault-bike-bike-stairmaster",
+      "title": "Update equipment type filter dropdown on Exercise Library page to include the new cardio equipment options: Treadmill, Assault Bike, Bike, Stairmaster",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-muscle-group-filter-dropdown-on-exercise-library-page-to-include-full-body-option",
+      "title": "Update muscle group filter dropdown on Exercise Library page to include 'Full Body' option",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-dark-mode-color-palette-in-frontend-index-css-to-use-a-black-and-red-color-scheme-replacing-the-current-oklch-color-variables-with-black-backgrounds-and-red-accent-colors-for-primary-elements-buttons-and-interactive-components",
+      "title": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme, replacing the current OKLCH color variables with black backgrounds and red accent colors for primary elements, buttons, and interactive components",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-tailwind-css-configuration-in-frontend-tailwind-config-js-to-reflect-the-black-and-red-color-scheme-ensuring-all-custom-theme-colors-use-appropriate-black-and-red-values-that-integrate-with-the-updated-css-variables",
+      "title": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme, ensuring all custom theme colors use appropriate black and red values that integrate with the updated CSS variables",
+      "reqIds": [
+        "REQ-30"
       ],
       "version": 1
     }
@@ -170,6 +250,74 @@
       "reqIds": [
         "REQ-16"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Create UI for editing existing exercises in the exercise library",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Create UI for adding new exercises to the exercise library",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Create UI for deleting exercises from the exercise library",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Add 'full body' to the muscle group options",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Add cardio equipment types: Treadmill, Assault Bike, Bike, Stairmaster to equipment type options",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Add 'Full Body' as a valid muscle group option to the backend validation alongside existing options (back, chest, biceps, triceps, shoulders, core, lower body)",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Add cardio equipment types (Treadmill, Assault Bike, Bike, Stairmaster) to the backend equipment type validation alongside existing options (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable)",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Create backend method to delete an exercise by ID, removing it from the exercise library",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Create backend method to update an existing exercise, allowing modification of name, equipment type, and muscle group with validation",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Update dark mode UI theme to use black and red color scheme throughout the application",
+      "reqIds": [],
       "status": "pending"
     }
   ],

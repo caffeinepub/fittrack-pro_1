@@ -1,6 +1,6 @@
 {
-  "frontend/src/index.css": "Global styles with dark mode OKLCH color system featuring a fitness-focused green primary color and custom font imports (Inter and Rajdhani).",
-  "frontend/tailwind.config.js": "Tailwind configuration with custom font families (Inter for body, Rajdhani for display) and extended design tokens for the dark mode fitness app.",
+  "frontend/src/index.css": "Global styles with OKLCH color system featuring a black and red theme with true black backgrounds (0% lightness) and red accent colors (hue ~25) for dark mode.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom font families (Inter for body, Rajdhani for display) and extended design tokens for the black and red themed fitness app.",
   "frontend/src/App.tsx": "Main application component with TanStack Router setup, dark mode theme provider, and routes for all workout tracking pages.",
   "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including exercises, workouts, weight entries, and progress tracking with proper cache invalidation.",
   "frontend/src/components/Navigation.tsx": "Sticky header navigation component with app branding and links to Exercises, Workouts, Log, and Progress pages with active state highlighting.",

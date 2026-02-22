@@ -1,180 +1,39 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "FitTrack Pro - Workout Tracking Frontend Implementation",
+  "title": "Update UI color scheme to black and red theme",
   "requirements": [
     {
-      "id": "REQ-1",
-      "summary": "Implement dark mode UI theme throughout the entire application",
+      "id": "REQ-29",
+      "summary": "Update the dark mode color palette in frontend/index.css to use a black and red color scheme",
       "acceptanceCriteria": [
-        "All screens use dark mode color scheme",
-        "Text and UI elements have sufficient contrast against dark backgrounds",
-        "Interactive elements are clearly visible in dark mode"
+        "Primary color scheme uses red tones instead of current colors",
+        "Background colors use true black or near-black values",
+        "Text maintains sufficient contrast for readability on black backgrounds",
+        "Interactive elements (buttons, links, badges) use red accent colors",
+        "All CSS color variables are updated to reflect black and red theme"
       ],
       "file_operations": [
         {
           "path": "frontend/src/index.css",
           "operation": "modify",
-          "description": "Configure dark mode as the default theme with appropriate dark backgrounds, light text colors, and sufficient contrast ratios. Update CSS custom properties for background, foreground, card, and accent colors to use dark mode values."
-        },
+          "description": "Update all OKLCH color variables in the :root selector for dark mode theme. Replace background colors with true black (0% 0 0) or near-black values. Update primary colors to red tones using OKLCH format (e.g., 55% 0.22 25 for primary red). Ensure foreground colors use high-lightness values for sufficient contrast on black backgrounds. Update accent, muted, and destructive color variables to use red-based hues. Maintain WCAG AA contrast ratios for all text colors on black backgrounds."
+        }
+      ]
+    },
+    {
+      "id": "REQ-30",
+      "summary": "Update the Tailwind CSS configuration in frontend/tailwind.config.js to reflect the black and red color scheme",
+      "acceptanceCriteria": [
+        "Tailwind theme colors are updated to match the black and red palette",
+        "All color references in the config align with the updated CSS variables",
+        "Chart colors maintain sufficient contrast on black backgrounds"
+      ],
+      "file_operations": [
         {
           "path": "frontend/tailwind.config.js",
           "operation": "modify",
-          "description": "Ensure Tailwind configuration supports dark mode theming. Verify dark mode color palette is properly configured for all UI components."
-        }
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "summary": "Create exercise library page with filtering UI by equipment type and muscle group",
-      "acceptanceCriteria": [
-        "Exercise library displays all exercises alphabetically by default",
-        "Equipment type filter dropdown includes all six types",
-        "Muscle group filter dropdown includes all seven groups",
-        "Filtering updates the displayed exercise list in real-time",
-        "Filtered results remain alphabetically sorted"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/ExerciseLibrary.tsx",
-          "operation": "create",
-          "description": "Create exercise library page component that displays exercises in alphabetical order. Include dropdown filters for equipment type (Dumbbell, Barbell, Free Weight, Machine, Plate-Loaded Machine, Cable) and muscle group (back, chest, biceps, triceps, shoulders, core, lower body). Call backend methods getAllExercisesSorted(), filterExercisesByEquipmentType(), and filterExercisesByMuscleGroup() based on filter selections. Display filtered results in a card grid layout."
-        },
-        {
-          "path": "frontend/src/components/ExerciseCard.tsx",
-          "operation": "create",
-          "description": "Create reusable exercise card component that displays exercise name, equipment type, and muscle group with dark mode styling. Include visual badges for equipment type and muscle group."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for /exercises that renders the ExerciseLibrary page component. Ensure React Router is configured to handle this route."
-        }
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "summary": "Create workout creation/editing page for building workouts with exercises",
-      "acceptanceCriteria": [
-        "User can enter a workout name",
-        "User can search and select exercises to add",
-        "User can remove exercises from the workout",
-        "User can save the workout",
-        "User can edit existing workouts"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/WorkoutForm.tsx",
-          "operation": "create",
-          "description": "Create workout form page component with input for workout name, exercise search/selection interface, and list of selected exercises with remove buttons. Call backend method createWorkout() when saving new workouts and updateWorkout() when editing existing ones. Use getAllExercisesSorted() to populate exercise search options. Handle both create and edit modes based on URL parameter."
-        },
-        {
-          "path": "frontend/src/components/ExerciseSearchSelector.tsx",
-          "operation": "create",
-          "description": "Create exercise search and selection component that allows users to search exercises by name and add them to a workout. Display filtered exercise list as user types and allow selection by clicking."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add routes for /workouts/new and /workouts/edit/:id that render the WorkoutForm page component. Pass appropriate props to differentiate between create and edit modes."
-        }
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "summary": "Create weight logging interface for tracking exercise performance",
-      "acceptanceCriteria": [
-        "User can select an exercise from a list or search",
-        "User can input weight value (numeric)",
-        "User can input number of reps (numeric)",
-        "User can input number of sets (numeric)",
-        "Entry is automatically timestamped with current date/time",
-        "User receives confirmation when entry is saved"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/LogWeight.tsx",
-          "operation": "create",
-          "description": "Create weight logging page component with exercise selector, numeric inputs for weight, reps, and sets. Call backend method logWeightEntry() with exerciseId, weight, reps, sets, and null for workoutId. Display success confirmation after successful save. Use getAllExercisesSorted() to populate exercise selection dropdown."
-        },
-        {
-          "path": "frontend/src/components/WeightEntryForm.tsx",
-          "operation": "create",
-          "description": "Create form component for weight entry with numeric input fields for weight, reps, and sets. Include input validation to ensure positive numbers only."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for /log-weight that renders the LogWeight page component."
-        }
-      ]
-    },
-    {
-      "id": "REQ-14",
-      "summary": "Create weight progress view displaying historical entries for exercises",
-      "acceptanceCriteria": [
-        "User can select an exercise to view progress",
-        "Historical entries display date, weight, reps, and sets",
-        "Entries are sorted chronologically (most recent first)",
-        "Visual elements indicate progress trends (increasing/decreasing weight)"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/WeightProgress.tsx",
-          "operation": "create",
-          "description": "Create weight progress page component with exercise selector dropdown and historical entries display. Call backend method getWeightProgress() for selected exerciseId. Display entries in reverse chronological order (most recent first) with date, weight, reps, and sets. Add visual indicators (icons or colors) to show weight increases or decreases compared to previous entry."
-        },
-        {
-          "path": "frontend/src/components/ProgressEntry.tsx",
-          "operation": "create",
-          "description": "Create progress entry component that displays a single weight entry with date, weight, reps, sets, and a trend indicator (up/down arrow or color) showing progress compared to previous entry."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for /progress that renders the WeightProgress page component."
-        }
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "summary": "Create workouts list page displaying saved workouts with details",
-      "acceptanceCriteria": [
-        "All saved workouts are displayed",
-        "User can tap/click to view workout details",
-        "Workout details show all included exercises",
-        "User can start a workout session from the list"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/WorkoutsList.tsx",
-          "operation": "create",
-          "description": "Create workouts list page component that displays all saved workouts. Call backend method getWorkout() for each workout to retrieve details. Show workout name and creation date in list view. Provide navigation to workout detail view and buttons to edit or start workout session."
-        },
-        {
-          "path": "frontend/src/pages/WorkoutDetail.tsx",
-          "operation": "create",
-          "description": "Create workout detail page component that displays full workout information including name, creation date, and list of all exercises in the workout. Call backend method getWorkout() with workout ID from URL parameter. Show exercise details by calling getExercise() for each exerciseId. Include button to start workout session."
-        },
-        {
-          "path": "frontend/src/components/WorkoutCard.tsx",
-          "operation": "create",
-          "description": "Create workout card component for displaying workout summary in list view with workout name, exercise count, and action buttons (view details, edit, start)."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add routes for /workouts (list view) and /workouts/:id (detail view) that render WorkoutsList and WorkoutDetail page components respectively."
-        },
-        {
-          "path": "frontend/src/components/Navigation.tsx",
-          "operation": "create",
-          "description": "Create navigation component with links to Exercise Library (/exercises), Workouts (/workouts), Log Weight (/log-weight), and Progress (/progress). Use dark mode styling with clear visual hierarchy."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Include Navigation component in the app layout so it appears on all pages. Set up default route redirect to /exercises."
+          "description": "Update the theme.extend.colors configuration to align with the new black and red color scheme. Ensure all color keys (background, foreground, primary, secondary, muted, accent, destructive, border, input, ring) reference the updated CSS variables from index.css. Update chart color definitions (chart-1 through chart-5) to use red-toned variations that maintain sufficient contrast on black backgrounds. Verify that all OKLCH color references match the new black and red palette."
         }
       ]
     }
